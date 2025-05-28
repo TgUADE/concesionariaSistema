@@ -16,9 +16,28 @@ public class GestorVehiculos implements InterfazGestorVehiculos {
     /**
      * 
      */
-    private HashMap<Vehiculos> vehiculos;
+    private HashMap<Integer, Vehiculo> vehiculos;
 
+    /**
+     * @param vehiculo
+     */
+    public void registrarVehiculo(Vehiculo vehiculo) {
+        // TODO implement here
+    }
 
+    /**
+     * @param vehiculo
+     */
+    public void actualizarDatosVehiculo(Vehiculo vehiculo) {
+        // TODO implement here
+    }
+
+    /**
+     * @param vehiculo
+     */
+    public void eliminarVehiculo(Vehiculo vehiculo) {
+        // TODO implement here
+    }
 
     /**
      * 

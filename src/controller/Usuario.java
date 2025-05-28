@@ -16,7 +16,8 @@ public class Usuario {
     /**
      * 
      */
-    private Int idUsuario;
+    private int idUsuario;
+    private RolUsuario rol;
 
     /**
      * 
@@ -26,7 +27,7 @@ public class Usuario {
     /**
      * 
      */
-    public String apellido;
+    private String apellido; // Changed to private
 
     /**
      * 
@@ -34,47 +35,62 @@ public class Usuario {
     private String mail;
 
 
-
     /**
-     * 
+     * Updated constructor
      */
-    public void setNombre() {
-        // TODO implement here
+    public Usuario(int idUsuario, String nombre, String apellido, String mail, RolUsuario rol) {
+        this.idUsuario = idUsuario;
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.mail = mail;
+        this.rol = rol;
+    }
+    
+    // Default constructor if still needed by other parts (e.g. Vendedor might call super())
+    // However, it's better if all Usuario objects are created with full info.
+    // For now, keeping the default constructor as it was there before, but it might be removed later.
+    public Usuario() {
     }
 
-    /**
-     * 
-     */
-    public void setMail() {
-        // TODO implement here
+
+    // Getters and Setters
+    public int getIdUsuario() {
+        return idUsuario;
     }
 
-    /**
-     * 
-     */
-    public void setRol() {
-        // TODO implement here
+    public void setIdUsuario(int idUsuario) {
+        this.idUsuario = idUsuario;
     }
 
-    /**
-     * 
-     */
-    public void getNombre() {
-        // TODO implement here
+    public String getNombre() {
+        return nombre;
     }
 
-    /**
-     * 
-     */
-    public void getMail() {
-        // TODO implement here
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 
-    /**
-     * 
-     */
-    public void getRol() {
-        // TODO implement here
+    public String getApellido() {
+        return apellido;
     }
 
+    public void setApellido(String apellido) {
+        this.apellido = apellido;
+    }
+
+    public String getMail() {
+        return mail;
+    }
+
+    public void setMail(String mail) {
+        this.mail = mail;
+    }
+
+    public RolUsuario getRol() {
+        return rol;
+    }
+
+    public void setRol(RolUsuario rol) {
+        this.rol = rol;
+    }
 }

@@ -5,7 +5,7 @@ import java.util.*;
 /**
  * 
  */
-public class MailEstado extends ManejoDeNotificaciones {
+public class MailEstado implements InterfazDeNotificacion {
 
     /**
      * Default constructor
@@ -17,8 +17,10 @@ public class MailEstado extends ManejoDeNotificaciones {
     /**
      * 
      */
+    @Override
     public void enviar() {
-        // TODO implement here
+        // TODO: Implement actual mail sending logic
+        System.out.println("Enviando notificación por Mail...");
     }
 
 }

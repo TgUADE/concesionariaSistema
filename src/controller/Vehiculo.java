@@ -1,160 +1,138 @@
+package controller;
 
-import java.io.*;
-import java.util.*;
+import java.util.List;
+import java.util.ArrayList;
 
-/**
- * 
- */
-public class Vehiculo {
+public class Vehiculo implements IVehiculo { // Retaining IVehiculo for Pedido compatibility
 
-    /**
-     * Default constructor
-     */
-    public Vehiculo() {
+    public enum TipoVehiculo {
+        AUTO, CAMIONETA, MOTO, CAMION
     }
 
-    /**
-     * 
-     */
-    private Int idVehiculo;
-
-    /**
-     * 
-     */
+    private int id;
     private String marca;
-
-    /**
-     * 
-     */
     private String modelo;
-
-    /**
-     * 
-     */
+    private TipoVehiculo tipo;
     private String color;
+    private double precioBase;
+    private String caracteristicas; // general description
+    private List<String> equipamientoOpcional;
+    private String chasis;
+    private String motor;
+    private boolean disponibleVenta = true; // Default to true
 
-    /**
-     * 
-     */
-    private String numeroChasis;
-
-    /**
-     * 
-     */
-    private String numeroMotor;
-
-    /**
-     * 
-     */
-    private Boolean disponibleVenta;
-
-
-
-
-
-    /**
-     * 
-     */
-    public void registrarVehiculo() {
-        // TODO implement here
+    public Vehiculo(int id, String marca, String modelo, TipoVehiculo tipo, String color, 
+                    double precioBase, String caracteristicas, List<String> equipamientoOpcional, 
+                    String chasis, String motor, boolean disponibleVenta) { // Added disponibleVenta
+        this.id = id;
+        this.marca = marca;
+        this.modelo = modelo;
+        this.tipo = tipo;
+        this.color = color;
+        this.precioBase = precioBase;
+        this.caracteristicas = caracteristicas;
+        this.equipamientoOpcional = equipamientoOpcional != null ? new ArrayList<>(equipamientoOpcional) : new ArrayList<>();
+        this.chasis = chasis;
+        this.motor = motor;
+        this.disponibleVenta = disponibleVenta; // Assign
     }
 
-    /**
-     * 
-     */
-    public void actualizarDatosVehiculo() {
-        // TODO implement here
+    // Getters
+    public int getId() {
+        return id;
     }
 
-    /**
-     * 
-     */
-    public void eleminarVehiculo() {
-        // TODO implement here
+    @Override // From IVehiculo
+    public String getMarca() {
+        return marca;
     }
 
-    /**
-     * 
-     */
-    public void getMarca() {
-        // TODO implement here
+    @Override // From IVehiculo
+    public String getModelo() {
+        return modelo;
     }
 
-    /**
-     * 
-     */
-    public void getModelo() {
-        // TODO implement here
+    public TipoVehiculo getTipo() {
+        return tipo;
     }
 
-    /**
-     * 
-     */
-    public void getColor() {
-        // TODO implement here
+    public String getColor() {
+        return color;
     }
 
-    /**
-     * 
-     */
-    public void getNumeroChasis() {
-        // TODO implement here
+    public double getPrecioBase() {
+        return precioBase;
     }
 
-    /**
-     * 
-     */
-    public void getNumeroMotor() {
-        // TODO implement here
+    public String getCaracteristicas() {
+        return caracteristicas;
     }
 
-    /**
-     * 
-     */
-    public void setMarca() {
-        // TODO implement here
+    public List<String> getEquipamientoOpcional() {
+        // Return a copy to maintain encapsulation if the list is mutable externally
+        return new ArrayList<>(equipamientoOpcional);
     }
 
-    /**
-     * 
-     */
-    public void setModelo() {
-        // TODO implement here
+    public String getChasis() {
+        return chasis;
     }
 
-    /**
-     * 
-     */
-    public void setColor() {
-        // TODO implement here
+    public String getMotor() {
+        return motor;
     }
 
-    /**
-     * 
-     */
-    public void setNumeroChasis() {
-        // TODO implement here
+    public boolean isDisponibleVenta() {
+        return disponibleVenta;
     }
 
-    /**
-     * 
-     */
-    public void setNumeroMotor() {
-        // TODO implement here
+    // Setters
+    public void setId(int id) {
+        this.id = id;
     }
 
-    /**
-     * 
-     */
-    public void setDisponibleVenta() {
-        // TODO implement here
+    public void setMarca(String marca) {
+        this.marca = marca;
     }
 
-    /**
-     * 
-     */
-    public void getDisponibleVenta() {
-        // TODO implement here
+    public void setModelo(String modelo) {
+        this.modelo = modelo;
     }
 
+    public void setTipo(TipoVehiculo tipo) {
+        this.tipo = tipo;
+    }
+
+    public void setColor(String color) {
+        this.color = color;
+    }
+
+    public void setPrecioBase(double precioBase) {
+        this.precioBase = precioBase;
+    }
+
+    public void setCaracteristicas(String caracteristicas) {
+        this.caracteristicas = caracteristicas;
+    }
+
+    public void setEquipamientoOpcional(List<String> equipamientoOpcional) {
+        this.equipamientoOpcional = equipamientoOpcional != null ? new ArrayList<>(equipamientoOpcional) : new ArrayList<>();
+    }
+    
+    public void addEquipamientoOpcional(String equipamiento) {
+        if (equipamiento != null && !equipamiento.trim().isEmpty()) {
+            this.equipamientoOpcional.add(equipamiento);
+        }
+    }
+
+    public void setChasis(String chasis) {
+        this.chasis = chasis;
+    }
+
+    public void setMotor(String motor) {
+        this.motor = motor;
+    }
+
+    public void setDisponibleVenta(boolean disponibleVenta) {
+        this.disponibleVenta = disponibleVenta;
+    }
 }

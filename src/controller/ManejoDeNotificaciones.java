@@ -10,81 +10,69 @@ public class ManejoDeNotificaciones implements InterfazDeNotificacion {
     /**
      * Default constructor
      */
-    public ManejoDeNotificaciones() {
-    }
-
-    /**
-     * 
-     */
-    private NotificationManager static instancia;
-
-    /**
-     * 
-     */
-    private NotificationChannel canalPorDefecto;
-
-    /**
-     * 
-     */
-    private InterfazDeNotificaicion estado;
-
-
-
-
-    /**
-     * 
-     */
-    private void manejoDeNotificaciones() {
+    private ManejoDeNotificaciones() {
         // TODO implement here
     }
 
     /**
      * 
      */
-    public void getInstancia() {
-        // TODO implement here
-    }
+    private static ManejoDeNotificaciones instancia;
 
     /**
      * 
      */
-    public void enviarMail() {
-        // TODO implement here
-    }
+    private InterfazDeNotificacion estado; // Current notification strategy/state
 
     /**
      * 
      */
-    public void enviarSMS() {
-        // TODO implement here
+    public static ManejoDeNotificaciones getInstancia() {
+        if (instancia == null) {
+            instancia = new ManejoDeNotificaciones();
+        }
+        return instancia;
     }
 
     /**
      * @param canal
      */
-    public void setCanalPorDefecto(CanalDenotificacion canal) {
-        // TODO implement here
+    public void setCanalPorDefecto(CanalDeNotificacion canal) {
+        if (canal == CanalDeNotificacion.MAIL) { // Assuming CanalDeNotificacion is an enum
+            this.estado = new MailEstado(); 
+        } else if (canal == CanalDeNotificacion.SMS) {
+            this.estado = new SMSEstado();
+        } else {
+            this.estado = null; // Or a default/null object pattern implementation
+            System.err.println("Canal de notificación por defecto no reconocido.");
+        }
     }
 
     /**
      * 
      */
-    public void setEstado() {
-        // TODO implement here
+    public void setEstado(InterfazDeNotificacion nuevoEstado) {
+        this.estado = nuevoEstado;
+    }
+    
+    /**
+     * Retrieves the current notification state/strategy.
+     * @return The current InterfazDeNotificacion instance.
+     */
+    public InterfazDeNotificacion getEstado() {
+        return estado;
     }
 
     /**
      * 
      */
+    @Override
     public void enviar() {
-        // TODO implement here
-    }
-
-    /**
-     * 
-     */
-    public void enviar() {
-        // TODO implement InterfazDeNotificacion.enviar() here
+        if (this.estado != null) {
+            this.estado.enviar();
+        } else {
+            System.err.println("Estado de notificación no configurado.");
+        }
     }
 
 }

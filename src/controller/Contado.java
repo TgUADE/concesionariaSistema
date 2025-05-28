@@ -8,35 +8,52 @@ import java.util.*;
 public class Contado extends FormaDePago {
 
     /**
-     * Default constructor
-     */
-    public Contado() {
-    }
-
-    /**
      * 
      */
     private String moneda;
 
     /**
-     * 
+     * Default constructor
      */
-    public void setMoneda() {
-        // TODO implement here
+    public Contado(String moneda) {
+        this.moneda = moneda;
+    }
+
+    /**
+     * Default constructor for factory.
+     */
+    public Contado() {
+        // Moneda might be set later via setMoneda() or defaults to null/default value
+        this.moneda = "N/A"; // Default placeholder if not set
     }
 
     /**
      * 
      */
-    public void getMoneda() {
-        // TODO implement here
+    public void setMoneda(String moneda) {
+        this.moneda = moneda;
+    }
+
+    /**
+     * 
+     */
+    public String getMoneda() {
+        return moneda;
     }
 
     /**
      * @param montoTotal
      */
-    public void procesarPago(void montoTotal) {
+    @Override
+    public void procesarPago(double montoTotal) {
         // TODO implement here
+        System.out.println("Procesando pago en efectivo: " + montoTotal + " en " + this.moneda);
+        setEstado("Pagado con Contado"); // Example
     }
 
+    @Override
+    public String generarComprobante() {
+        // In a real application, this would generate a more detailed receipt.
+        return "Comprobante de pago Contado generado. Moneda: " + (this.moneda != null ? this.moneda : "N/A") + ", Monto: " + getMonto();
+    }
 }

@@ -16,7 +16,7 @@ public class ImpuestoCamion implements InterfazImpuestoStrategy {
     /**
      * 
      */
-    public void calcularIMpuesto() {
+    public void calcularImpuesto() {
         // TODO implement here
     }
 

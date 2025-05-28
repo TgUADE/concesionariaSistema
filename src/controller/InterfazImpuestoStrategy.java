@@ -7,5 +7,5 @@ import java.util.*;
  */
 public interface InterfazImpuestoStrategy {
 
-
+    public void calcularImpuesto();
 }

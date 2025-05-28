@@ -23,40 +23,49 @@ public class Transferencia extends FormaDePago {
      */
     private String banco;
 
-    /**
-     * 
-     */
-    public void getTipoDeTransferencia() {
-        // TODO implement here
+    public Transferencia(String tipoDeTransferencia, String banco) {
+        this.tipoDeTransferencia = tipoDeTransferencia;
+        this.banco = banco;
     }
 
     /**
      * 
      */
-    public void getBanco() {
-        // TODO implement here
+    public String getTipoDeTransferencia() {
+        return tipoDeTransferencia;
     }
 
     /**
      * 
      */
-    public void setTipoDeTransferencia() {
-        // TODO implement here
+    public String getBanco() {
+        return banco;
     }
 
     /**
      * 
      */
-    public void setBanco() {
-        // TODO implement here
+    public void setTipoDeTransferencia(String tipoDeTransferencia) {
+        this.tipoDeTransferencia = tipoDeTransferencia;
     }
 
     /**
-     * @param montoTotal 
-     * @param tipoTransferencia
+     * 
      */
-    public void procesarPago(void montoTotal, void tipoTransferencia) {
-        // TODO implement here
+    public void setBanco(String banco) {
+        this.banco = banco;
+    }
+
+    /**
+     * @param montoTotal
+     */
+    @Override
+    public void procesarPago(double montoTotal) {
+        // Logic to process transfer payment using this.tipoDeTransferencia and this.banco
+        // For example:
+        System.out.println("Procesando pago por transferencia: " + montoTotal +
+                           " tipo: " + this.tipoDeTransferencia + " con el banco " + this.banco);
+        // TODO: Implement actual payment processing logic
     }
 
 }

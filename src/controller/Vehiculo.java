@@ -5,7 +5,7 @@ import java.util.*;
 /**
  * 
  */
-public class Vehiculo {
+public class Vehiculo implements IVehiculo {
 
     /**
      * Default constructor
@@ -16,7 +16,7 @@ public class Vehiculo {
     /**
      * 
      */
-    private Int idVehiculo;
+    private int idVehiculo;
 
     /**
      * 
@@ -46,115 +46,64 @@ public class Vehiculo {
     /**
      * 
      */
-    private Boolean disponibleVenta;
+    private boolean disponibleVenta;
 
-
-
-
-
-    /**
-     * 
-     */
-    public void registrarVehiculo() {
-        // TODO implement here
+    public int getIdVehiculo() {
+        return idVehiculo;
     }
 
-    /**
-     * 
-     */
-    public void actualizarDatosVehiculo() {
-        // TODO implement here
+    public void setIdVehiculo(int idVehiculo) {
+        this.idVehiculo = idVehiculo;
     }
 
-    /**
-     * 
-     */
-    public void eleminarVehiculo() {
-        // TODO implement here
+    @Override
+    public String getMarca() {
+        return marca;
     }
 
-    /**
-     * 
-     */
-    public void getMarca() {
-        // TODO implement here
+    public void setMarca(String marca) {
+        this.marca = marca;
     }
 
-    /**
-     * 
-     */
-    public void getModelo() {
-        // TODO implement here
+    @Override
+    public String getModelo() {
+        return modelo;
     }
 
-    /**
-     * 
-     */
-    public void getColor() {
-        // TODO implement here
+    public void setModelo(String modelo) {
+        this.modelo = modelo;
     }
 
-    /**
-     * 
-     */
-    public void getNumeroChasis() {
-        // TODO implement here
+    public String getColor() {
+        return color;
     }
 
-    /**
-     * 
-     */
-    public void getNumeroMotor() {
-        // TODO implement here
+    public void setColor(String color) {
+        this.color = color;
     }
 
-    /**
-     * 
-     */
-    public void setMarca() {
-        // TODO implement here
+    public String getNumeroChasis() {
+        return numeroChasis;
     }
 
-    /**
-     * 
-     */
-    public void setModelo() {
-        // TODO implement here
+    public void setNumeroChasis(String numeroChasis) {
+        this.numeroChasis = numeroChasis;
     }
 
-    /**
-     * 
-     */
-    public void setColor() {
-        // TODO implement here
+    public String getNumeroMotor() {
+        return numeroMotor;
     }
 
-    /**
-     * 
-     */
-    public void setNumeroChasis() {
-        // TODO implement here
+    public void setNumeroMotor(String numeroMotor) {
+        this.numeroMotor = numeroMotor;
     }
 
-    /**
-     * 
-     */
-    public void setNumeroMotor() {
-        // TODO implement here
+    public boolean isDisponibleVenta() {
+        return disponibleVenta;
     }
 
-    /**
-     * 
-     */
-    public void setDisponibleVenta() {
-        // TODO implement here
-    }
-
-    /**
-     * 
-     */
-    public void getDisponibleVenta() {
-        // TODO implement here
+    public void setDisponibleVenta(boolean disponibleVenta) {
+        this.disponibleVenta = disponibleVenta;
     }
 
 }

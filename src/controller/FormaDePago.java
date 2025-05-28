@@ -5,7 +5,7 @@ import java.util.*;
 /**
  * 
  */
-public class FormaDePago {
+public abstract class FormaDePago implements IFormaDePago {
 
     /**
      * Default constructor
@@ -16,12 +16,12 @@ public class FormaDePago {
     /**
      * 
      */
-    private Int idFormaDePago;
+    private int idFormaDePago;
 
     /**
      * 
      */
-    private Double monto;
+    private double monto;
 
     /**
      * 
@@ -32,52 +32,32 @@ public class FormaDePago {
     /**
      * @param montoTotal
      */
-    public void procesarPago(void montoTotal) {
-        // TODO implement here
+    @Override
+    public abstract void procesarPago(double montoTotal);
+
+    public int getIdFormaDePago() {
+        return idFormaDePago;
     }
 
-    /**
-     * @param montoTotal 
-     * @param cuotas
-     */
-    public void procesarPago(void montoTotal, void cuotas) {
-        // TODO implement here
+    public void setIdFormaDePago(int idFormaDePago) {
+        this.idFormaDePago = idFormaDePago;
     }
 
-    /**
-     * @param montoTotal 
-     * @param tipoTransferencia
-     */
-    public void procesarPago(void montoTotal, void tipoTransferencia) {
-        // TODO implement here
+    public double getMonto() {
+        return monto;
     }
 
-    /**
-     * 
-     */
-    public void getMonto() {
-        // TODO implement here
+    public void setMonto(double monto) {
+        this.monto = monto;
     }
 
-    /**
-     * 
-     */
-    public void setMonto() {
-        // TODO implement here
+    @Override
+    public String getEstado() {
+        return estado;
     }
 
-    /**
-     * 
-     */
-    public void getEstado() {
-        // TODO implement here
-    }
-
-    /**
-     * 
-     */
-    public void setEstado() {
-        // TODO implement here
+    public void setEstado(String estado) {
+        this.estado = estado;
     }
 
 }

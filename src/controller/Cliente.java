@@ -5,7 +5,7 @@ import java.util.*;
 /**
  * 
  */
-public class Cliente {
+public class Cliente implements ICliente {
 
     /**
      * Default constructor
@@ -17,6 +17,8 @@ public class Cliente {
      * 
      */
     private String nombre;
+    // Assuming other fields like email, direccion might exist or be added later.
+    // For now, only implementing what's in ICliente.
 
     /**
      * 
@@ -35,15 +37,16 @@ public class Cliente {
     /**
      * 
      */
-    public void setNombre() {
-        // TODO implement here
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 
     /**
      * 
      */
-    public void getNombre() {
-        // TODO implement here
+    @Override
+    public String getNombre() {
+        return nombre;
     }
 
 }

@@ -5,7 +5,7 @@ import java.util.*;
 /**
  * 
  */
-public class SMSEstado {
+public class SMSEstado implements InterfazDeNotificacion {
 
     /**
      * Default constructor
@@ -17,8 +17,10 @@ public class SMSEstado {
     /**
      * 
      */
+    @Override
     public void enviar() {
-        // TODO implement here
+        // TODO: Implement actual SMS sending logic
+        System.out.println("Enviando notificación por SMS...");
     }
 
 }

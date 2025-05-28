@@ -1,11 +1,245 @@
 <!DOCTYPE html>
 <html lang="es">
-  <head>
-    <meta charset="UTF-8" />
-    <title>Prueba HTML</title>
-  </head>
-  <body>
-    <h1>¡Hola, mundo!</h1>
-    <p>Si ves esto, tu HTML funciona correctamente.</p>
-  </body>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de Concesionaria</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-content">
+                <h1><i class="fas fa-car"></i> Sistema de Concesionaria</h1>
+                <nav class="nav-tabs">
+                    <button class="tab-btn active" data-tab="vehiculos">
+                        <i class="fas fa-car"></i> Vehículos
+                    </button>
+                    <button class="tab-btn" data-tab="pedidos">
+                        <i class="fas fa-shopping-cart"></i> Pedidos
+                    </button>
+                    <button class="tab-btn" data-tab="nuevo-vehiculo">
+                        <i class="fas fa-plus"></i> Nuevo Vehículo
+                    </button>
+                </nav>
+            </div>
+        </header>
+
+        <!-- Content Area -->
+        <main class="main-content">
+            <!-- Vehículos Tab -->
+            <div id="vehiculos" class="tab-content active">
+                <div class="section-header">
+                    <h2>Catálogo de Vehículos</h2>
+                    <div class="filters">
+                        <select id="filtro-tipo" class="filter-select">
+                            <option value="">Todos los tipos</option>
+                            <option value="AUTO">Autos</option>
+                            <option value="CAMIONETA">Camionetas</option>
+                            <option value="MOTO">Motos</option>
+                            <option value="CAMION">Camiones</option>
+                        </select>
+                        <button id="btn-refresh-vehiculos" class="btn btn-secondary">
+                            <i class="fas fa-sync-alt"></i> Actualizar
+                        </button>
+                    </div>
+                </div>
+                <div id="vehiculos-list" class="cards-grid">
+                    <!-- Los vehículos se cargarán aquí dinámicamente -->
+                </div>
+            </div>
+
+            <!-- Pedidos Tab -->
+            <div id="pedidos" class="tab-content">
+                <div class="section-header">
+                    <h2>Gestión de Pedidos</h2>
+                    <div class="filters">
+                        <select id="filtro-estado" class="filter-select">
+                            <option value="">Todos los estados</option>
+                            <option value="VENTAS">Ventas</option>
+                            <option value="COBRANZA">Cobranza</option>
+                            <option value="LOGISTICA">Logística</option>
+                            <option value="COMPLETADO">Completado</option>
+                        </select>
+                        <button id="btn-refresh-pedidos" class="btn btn-secondary">
+                            <i class="fas fa-sync-alt"></i> Actualizar
+                        </button>
+                    </div>
+                </div>
+                <div id="pedidos-list" class="cards-grid">
+                    <!-- Los pedidos se cargarán aquí dinámicamente -->
+                </div>
+            </div>
+
+            <!-- Nuevo Vehículo Tab -->
+            <div id="nuevo-vehiculo" class="tab-content">
+                <div class="section-header">
+                    <h2>Agregar Nuevo Vehículo</h2>
+                </div>
+                <div class="form-container">
+                    <form id="form-nuevo-vehiculo" class="form">
+                        <div class="form-group">
+                            <label for="vehiculo-tipo">Tipo de Vehículo</label>
+                            <select id="vehiculo-tipo" required>
+                                <option value="">Seleccionar tipo</option>
+                                <option value="AUTO">Auto</option>
+                                <option value="CAMIONETA">Camioneta</option>
+                                <option value="MOTO">Moto</option>
+                                <option value="CAMION">Camión</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="vehiculo-marca">Marca</label>
+                            <input type="text" id="vehiculo-marca" required placeholder="Ej: Toyota">
+                        </div>
+                        <div class="form-group">
+                            <label for="vehiculo-modelo">Modelo</label>
+                            <input type="text" id="vehiculo-modelo" required placeholder="Ej: Corolla">
+                        </div>
+                        <div class="form-group">
+                            <label for="vehiculo-año">Año</label>
+                            <input type="number" id="vehiculo-año" required min="1990" max="2025" value="2024">
+                        </div>
+                        <div class="form-group">
+                            <label for="vehiculo-color">Color</label>
+                            <input type="text" id="vehiculo-color" required placeholder="Ej: Blanco, Negro, Rojo">
+                        </div>
+                        <div class="form-group">
+                            <label for="vehiculo-precio">Precio</label>
+                            <input type="number" id="vehiculo-precio" required min="0" step="0.01" placeholder="25000">
+                        </div>
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-plus"></i> Agregar Vehículo
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Modal para crear pedido -->
+    <div id="modal-pedido" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Crear Nuevo Pedido</h3>
+                <button class="modal-close">&times;</button>
+            </div>
+            <form id="form-nuevo-pedido" class="form">
+                <div class="form-group">
+                    <label for="cliente-nombre">Nombre del Cliente</label>
+                    <input type="text" id="cliente-nombre" required placeholder="Juan Pérez">
+                </div>
+                <div class="form-group">
+                    <label for="cliente-email">Email del Cliente</label>
+                    <input type="email" id="cliente-email" required placeholder="juan@email.com">
+                </div>
+                <div id="vehiculo-seleccionado" class="vehiculo-info">
+                    <!-- Info del vehículo seleccionado aparecerá aquí -->
+                </div>
+                <div class="form-actions">
+                    <button type="button" class="btn btn-secondary modal-close">Cancelar</button>
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-shopping-cart"></i> Crear Pedido
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal para editar vehículo -->
+    <div id="modal-editar-vehiculo" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Editar Vehículo</h3>
+                <button class="modal-close">&times;</button>
+            </div>
+            <form id="form-editar-vehiculo" class="form">
+                <div class="form-group">
+                    <label for="edit-vehiculo-tipo">Tipo</label>
+                    <select id="edit-vehiculo-tipo" required>
+                        <option value="">Seleccionar tipo</option>
+                        <option value="AUTO">Auto</option>
+                        <option value="CAMIONETA">Camioneta</option>
+                        <option value="MOTO">Moto</option>
+                        <option value="CAMION">Camión</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="edit-vehiculo-marca">Marca</label>
+                    <input type="text" id="edit-vehiculo-marca" required placeholder="Ej: Toyota">
+                </div>
+                <div class="form-group">
+                    <label for="edit-vehiculo-modelo">Modelo</label>
+                    <input type="text" id="edit-vehiculo-modelo" required placeholder="Ej: Corolla">
+                </div>
+                <div class="form-group">
+                    <label for="edit-vehiculo-año">Año</label>
+                    <input type="number" id="edit-vehiculo-año" required min="1990" max="2025">
+                </div>
+                <div class="form-group">
+                    <label for="edit-vehiculo-color">Color</label>
+                    <input type="text" id="edit-vehiculo-color" required placeholder="Ej: Blanco, Negro, Rojo">
+                </div>
+                <div class="form-group">
+                    <label for="edit-vehiculo-precio">Precio</label>
+                    <input type="number" id="edit-vehiculo-precio" required min="0" step="0.01">
+                </div>
+                <div class="form-group">
+                    <label for="edit-vehiculo-disponible">Disponibilidad</label>
+                    <select id="edit-vehiculo-disponible" required>
+                        <option value="true">Disponible</option>
+                        <option value="false">No disponible</option>
+                    </select>
+                </div>
+                <div class="form-actions">
+                    <button type="button" class="btn btn-secondary modal-close">Cancelar</button>
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-save"></i> Guardar Cambios
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal para editar pedido -->
+    <div id="modal-editar-pedido" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Editar Datos del Cliente</h3>
+                <button class="modal-close">&times;</button>
+            </div>
+            <form id="form-editar-pedido" class="form">
+                <div class="form-group">
+                    <label for="edit-pedido-cliente-nombre">Nombre del Cliente</label>
+                    <input type="text" id="edit-pedido-cliente-nombre" required placeholder="Nombre completo">
+                </div>
+                <div class="form-group">
+                    <label for="edit-pedido-cliente-email">Email del Cliente</label>
+                    <input type="email" id="edit-pedido-cliente-email" required placeholder="cliente@email.com">
+                </div>
+                <div id="edit-pedido-vehiculo-info" class="vehiculo-info readonly">
+                    <!-- Info del vehículo del pedido aparecerá aquí -->
+                </div>
+                <div class="form-actions">
+                    <button type="button" class="btn btn-secondary modal-close">Cancelar</button>
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-save"></i> Guardar Cambios
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Loading Spinner -->
+    <div id="loading" class="loading">
+        <div class="spinner"></div>
+    </div>
+
+    <!-- Toast Notifications -->
+    <div id="toast-container" class="toast-container"></div>
+
+    <script src="js/app.js"></script>
+</body>
 </html>

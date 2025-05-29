@@ -37,6 +37,16 @@ public class MainApp {
         public boolean disponible;
         public String color;
         
+        // Atributos específicos por tipo de vehículo
+        public Integer puertas; // Para Auto
+        public String tipoMoto; // Para Moto
+        public Integer cilindrada; // Para Moto
+        public Double cargaMaximaCamioneta; // Para Camioneta
+        public Boolean traccion4x4; // Para Camioneta
+        public Integer capacidadPasajeros; // Para Camioneta
+        public Double cargaMaximaCamion; // Para Camión
+        public Integer numeroEjes; // Para Camión
+        
         public VehiculoData(int id, String tipo, String marca, String modelo, int año, double precio, boolean disponible, String color) {
             this.id = id;
             this.tipo = tipo;
@@ -238,6 +248,27 @@ public class MainApp {
             // Create new vehicle
             int newId = vehiculoIdCounter.getAndIncrement();
             VehiculoData nuevoVehiculo = new VehiculoData(newId, tipo, marca, modelo, año, precio, true, color);
+            
+            // Extraer atributos específicos según el tipo de vehículo
+            switch (tipo.toUpperCase()) {
+                case "AUTO":
+                    nuevoVehiculo.puertas = extractJsonValueAsInteger(body, "puertas");
+                    break;
+                case "MOTO":
+                    nuevoVehiculo.tipoMoto = extractJsonValue(body, "tipoMoto");
+                    nuevoVehiculo.cilindrada = extractJsonValueAsInteger(body, "cilindrada");
+                    break;
+                case "CAMIONETA":
+                    nuevoVehiculo.cargaMaximaCamioneta = extractJsonValueAsDouble(body, "cargaMaximaCamioneta");
+                    nuevoVehiculo.traccion4x4 = extractJsonValueAsBoolean(body, "traccion4x4");
+                    nuevoVehiculo.capacidadPasajeros = extractJsonValueAsInteger(body, "capacidadPasajeros");
+                    break;
+                case "CAMION":
+                    nuevoVehiculo.cargaMaximaCamion = extractJsonValueAsDouble(body, "cargaMaximaCamion");
+                    nuevoVehiculo.numeroEjes = extractJsonValueAsInteger(body, "numeroEjes");
+                    break;
+            }
+            
             vehiculosCreados.add(nuevoVehiculo);
             
             System.out.println("Nuevo vehículo creado: " + marca + " " + modelo + " (" + tipo + ") - Color: " + color);
@@ -316,6 +347,37 @@ public class MainApp {
                         vehiculo.precio = precio;
                         vehiculo.disponible = disponible;
                         
+                        // Actualizar atributos específicos según el tipo de vehículo
+                        // Primero limpiar todos los atributos específicos
+                        vehiculo.puertas = null;
+                        vehiculo.tipoMoto = null;
+                        vehiculo.cilindrada = null;
+                        vehiculo.cargaMaximaCamioneta = null;
+                        vehiculo.traccion4x4 = null;
+                        vehiculo.capacidadPasajeros = null;
+                        vehiculo.cargaMaximaCamion = null;
+                        vehiculo.numeroEjes = null;
+                        
+                        // Luego asignar los específicos del nuevo tipo
+                        switch (tipo.toUpperCase()) {
+                            case "AUTO":
+                                vehiculo.puertas = extractJsonValueAsInteger(body, "puertas");
+                                break;
+                            case "MOTO":
+                                vehiculo.tipoMoto = extractJsonValue(body, "tipoMoto");
+                                vehiculo.cilindrada = extractJsonValueAsInteger(body, "cilindrada");
+                                break;
+                            case "CAMIONETA":
+                                vehiculo.cargaMaximaCamioneta = extractJsonValueAsDouble(body, "cargaMaximaCamioneta");
+                                vehiculo.traccion4x4 = extractJsonValueAsBoolean(body, "traccion4x4");
+                                vehiculo.capacidadPasajeros = extractJsonValueAsInteger(body, "capacidadPasajeros");
+                                break;
+                            case "CAMION":
+                                vehiculo.cargaMaximaCamion = extractJsonValueAsDouble(body, "cargaMaximaCamion");
+                                vehiculo.numeroEjes = extractJsonValueAsInteger(body, "numeroEjes");
+                                break;
+                        }
+                        
                         System.out.println("Vehículo actualizado: ID " + vehiculoId + " - " + marca + " " + modelo);
                         return "{\"success\":true,\"message\":\"Vehículo actualizado exitosamente\"}";
                     }
@@ -376,6 +438,36 @@ public class MainApp {
         return json.substring(valueStart, valueEnd).trim();
     }
     
+    private static Integer extractJsonValueAsInteger(String json, String key) {
+        String value = extractJsonValue(json, key);
+        if (value.isEmpty()) return null;
+        try {
+            return Integer.parseInt(value);
+        } catch (NumberFormatException e) {
+            return null;
+        }
+    }
+    
+    private static Double extractJsonValueAsDouble(String json, String key) {
+        String value = extractJsonValue(json, key);
+        if (value.isEmpty()) return null;
+        try {
+            return Double.parseDouble(value);
+        } catch (NumberFormatException e) {
+            return null;
+        }
+    }
+    
+    private static Boolean extractJsonValueAsBoolean(String json, String key) {
+        String value = extractJsonValue(json, key);
+        if (value.isEmpty()) return null;
+        try {
+            return Boolean.parseBoolean(value);
+        } catch (Exception e) {
+            return null;
+        }
+    }
+    
     private static String getVehiculosJson() {
         StringBuilder json = new StringBuilder();
         json.append("{\"vehiculos\":[");
@@ -394,7 +486,45 @@ public class MainApp {
                     .append(",\"precio\":").append(vehiculo.precio)
                     .append(",\"disponible\":").append(vehiculo.disponible)
                     .append(",\"color\":\"").append(vehiculo.color)
-                    .append("\"}");
+                    .append("\"");
+                
+                // Agregar atributos específicos según el tipo de vehículo
+                switch (vehiculo.tipo.toUpperCase()) {
+                    case "AUTO":
+                        if (vehiculo.puertas != null) {
+                            json.append(",\"puertas\":").append(vehiculo.puertas);
+                        }
+                        break;
+                    case "MOTO":
+                        if (vehiculo.tipoMoto != null) {
+                            json.append(",\"tipoMoto\":\"").append(vehiculo.tipoMoto).append("\"");
+                        }
+                        if (vehiculo.cilindrada != null) {
+                            json.append(",\"cilindrada\":").append(vehiculo.cilindrada);
+                        }
+                        break;
+                    case "CAMIONETA":
+                        if (vehiculo.cargaMaximaCamioneta != null) {
+                            json.append(",\"cargaMaximaCamioneta\":").append(vehiculo.cargaMaximaCamioneta);
+                        }
+                        if (vehiculo.traccion4x4 != null) {
+                            json.append(",\"traccion4x4\":").append(vehiculo.traccion4x4);
+                        }
+                        if (vehiculo.capacidadPasajeros != null) {
+                            json.append(",\"capacidadPasajeros\":").append(vehiculo.capacidadPasajeros);
+                        }
+                        break;
+                    case "CAMION":
+                        if (vehiculo.cargaMaximaCamion != null) {
+                            json.append(",\"cargaMaximaCamion\":").append(vehiculo.cargaMaximaCamion);
+                        }
+                        if (vehiculo.numeroEjes != null) {
+                            json.append(",\"numeroEjes\":").append(vehiculo.numeroEjes);
+                        }
+                        break;
+                }
+                
+                json.append("}");
                 first = false;
             }
         }
@@ -432,7 +562,8 @@ public class MainApp {
                 json.append("{\"id\":").append(pedido.id)
                     .append(",\"cliente\":{\"nombre\":\"").append(pedido.cliente.nombre)
                     .append("\",\"email\":\"").append(pedido.cliente.email)
-                    .append("\"},\"vehiculo\":{\"marca\":\"").append(pedido.vehiculo.marca)
+                    .append("\"},\"vehiculo\":{\"tipo\":\"").append(pedido.vehiculo.tipo != null ? pedido.vehiculo.tipo : "N/A")
+                    .append("\",\"marca\":\"").append(pedido.vehiculo.marca)
                     .append("\",\"modelo\":\"").append(pedido.vehiculo.modelo)
                     .append("\"},\"estado\":\"").append(pedido.estado)
                     .append("\",\"total\":").append(pedido.total)
@@ -457,11 +588,12 @@ public class MainApp {
             String emailCliente = extractJsonValue(body, "emailCliente");
             String marca = extractJsonValue(body, "marca");
             String modelo = extractJsonValue(body, "modelo");
+            String tipo = extractJsonValue(body, "tipo"); // Extraer el tipo de vehículo
             double precio = Double.parseDouble(extractJsonValue(body, "precio"));
             
             // Create client and vehicle data
             ClienteData cliente = new ClienteData(nombreCliente, emailCliente);
-            VehiculoData vehiculo = new VehiculoData(0, "", marca, modelo, 0, precio, true, "N/A");
+            VehiculoData vehiculo = new VehiculoData(0, tipo.isEmpty() ? "N/A" : tipo, marca, modelo, 0, precio, true, "N/A");
             
             // Create new order
             int newId = pedidoIdCounter.getAndIncrement();
@@ -469,7 +601,7 @@ public class MainApp {
             PedidoData nuevoPedido = new PedidoData(newId, cliente, vehiculo, "VENTAS", precio, fecha);
             pedidosCreados.add(nuevoPedido);
             
-            System.out.println("Nuevo pedido creado: " + nombreCliente + " - " + marca + " " + modelo);
+            System.out.println("Nuevo pedido creado: " + nombreCliente + " - " + tipo + " " + marca + " " + modelo);
             
             return "{\"success\":true,\"message\":\"Pedido creado exitosamente\",\"id\":" + newId + "}";
             

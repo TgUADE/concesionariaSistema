@@ -110,6 +110,81 @@
                             <label for="vehiculo-precio">Precio</label>
                             <input type="number" id="vehiculo-precio" required min="0" step="0.01" placeholder="25000">
                         </div>
+                        
+                        <!-- Campos específicos por tipo de vehículo -->
+                        <div id="campos-especificos-vehiculo">
+                            <!-- Campos para Auto -->
+                            <div class="form-group campo-auto" style="display: none;">
+                                <label for="vehiculo-puertas">Número de Puertas</label>
+                                <select id="vehiculo-puertas">
+                                    <option value="">Seleccionar</option>
+                                    <option value="2">2 puertas</option>
+                                    <option value="3">3 puertas</option>
+                                    <option value="4">4 puertas</option>
+                                    <option value="5">5 puertas</option>
+                                </select>
+                            </div>
+                            
+                            <!-- Campos para Moto -->
+                            <div class="form-group campo-moto" style="display: none;">
+                                <label for="vehiculo-tipo-moto">Tipo de Moto</label>
+                                <select id="vehiculo-tipo-moto">
+                                    <option value="">Seleccionar tipo</option>
+                                    <option value="Deportiva">Deportiva</option>
+                                    <option value="Cruiser">Cruiser</option>
+                                    <option value="Touring">Touring</option>
+                                    <option value="Naked">Naked</option>
+                                    <option value="Scooter">Scooter</option>
+                                    <option value="Enduro">Enduro</option>
+                                </select>
+                            </div>
+                            <div class="form-group campo-moto" style="display: none;">
+                                <label for="vehiculo-cilindrada">Cilindrada (cc)</label>
+                                <input type="number" id="vehiculo-cilindrada" min="50" max="2000" placeholder="150">
+                            </div>
+                            
+                            <!-- Campos para Camioneta -->
+                            <div class="form-group campo-camioneta" style="display: none;">
+                                <label for="vehiculo-carga-maxima-camioneta">Carga Máxima (kg)</label>
+                                <input type="number" id="vehiculo-carga-maxima-camioneta" min="0" step="0.1" placeholder="1000">
+                            </div>
+                            <div class="form-group campo-camioneta" style="display: none;">
+                                <label for="vehiculo-traccion4x4">Tracción 4x4</label>
+                                <select id="vehiculo-traccion4x4">
+                                    <option value="">Seleccionar</option>
+                                    <option value="true">Sí</option>
+                                    <option value="false">No</option>
+                                </select>
+                            </div>
+                            <div class="form-group campo-camioneta" style="display: none;">
+                                <label for="vehiculo-capacidad-pasajeros">Capacidad de Pasajeros</label>
+                                <select id="vehiculo-capacidad-pasajeros">
+                                    <option value="">Seleccionar</option>
+                                    <option value="2">2 pasajeros</option>
+                                    <option value="5">5 pasajeros</option>
+                                    <option value="7">7 pasajeros</option>
+                                    <option value="8">8 pasajeros</option>
+                                </select>
+                            </div>
+                            
+                            <!-- Campos para Camión -->
+                            <div class="form-group campo-camion" style="display: none;">
+                                <label for="vehiculo-carga-maxima-camion">Carga Máxima (kg)</label>
+                                <input type="number" id="vehiculo-carga-maxima-camion" min="0" step="0.1" placeholder="10000">
+                            </div>
+                            <div class="form-group campo-camion" style="display: none;">
+                                <label for="vehiculo-numero-ejes">Número de Ejes</label>
+                                <select id="vehiculo-numero-ejes">
+                                    <option value="">Seleccionar</option>
+                                    <option value="2">2 ejes</option>
+                                    <option value="3">3 ejes</option>
+                                    <option value="4">4 ejes</option>
+                                    <option value="5">5 ejes</option>
+                                    <option value="6">6 ejes</option>
+                                </select>
+                            </div>
+                        </div>
+                        
                         <button type="submit" class="btn btn-primary">
                             <i class="fas fa-plus"></i> Agregar Vehículo
                         </button>
@@ -193,6 +268,81 @@
                         <option value="false">No disponible</option>
                     </select>
                 </div>
+                
+                <!-- Campos específicos por tipo de vehículo para edición -->
+                <div id="campos-especificos-edit-vehiculo">
+                    <!-- Campos para Auto -->
+                    <div class="form-group campo-auto" style="display: none;">
+                        <label for="edit-vehiculo-puertas">Número de Puertas</label>
+                        <select id="edit-vehiculo-puertas">
+                            <option value="">Seleccionar</option>
+                            <option value="2">2 puertas</option>
+                            <option value="3">3 puertas</option>
+                            <option value="4">4 puertas</option>
+                            <option value="5">5 puertas</option>
+                        </select>
+                    </div>
+                    
+                    <!-- Campos para Moto -->
+                    <div class="form-group campo-moto" style="display: none;">
+                        <label for="edit-vehiculo-tipo-moto">Tipo de Moto</label>
+                        <select id="edit-vehiculo-tipo-moto">
+                            <option value="">Seleccionar tipo</option>
+                            <option value="Deportiva">Deportiva</option>
+                            <option value="Cruiser">Cruiser</option>
+                            <option value="Touring">Touring</option>
+                            <option value="Naked">Naked</option>
+                            <option value="Scooter">Scooter</option>
+                            <option value="Enduro">Enduro</option>
+                        </select>
+                    </div>
+                    <div class="form-group campo-moto" style="display: none;">
+                        <label for="edit-vehiculo-cilindrada">Cilindrada (cc)</label>
+                        <input type="number" id="edit-vehiculo-cilindrada" min="50" max="2000" placeholder="150">
+                    </div>
+                    
+                    <!-- Campos para Camioneta -->
+                    <div class="form-group campo-camioneta" style="display: none;">
+                        <label for="edit-vehiculo-carga-maxima-camioneta">Carga Máxima (kg)</label>
+                        <input type="number" id="edit-vehiculo-carga-maxima-camioneta" min="0" step="0.1" placeholder="1000">
+                    </div>
+                    <div class="form-group campo-camioneta" style="display: none;">
+                        <label for="edit-vehiculo-traccion4x4">Tracción 4x4</label>
+                        <select id="edit-vehiculo-traccion4x4">
+                            <option value="">Seleccionar</option>
+                            <option value="true">Sí</option>
+                            <option value="false">No</option>
+                        </select>
+                    </div>
+                    <div class="form-group campo-camioneta" style="display: none;">
+                        <label for="edit-vehiculo-capacidad-pasajeros">Capacidad de Pasajeros</label>
+                        <select id="edit-vehiculo-capacidad-pasajeros">
+                            <option value="">Seleccionar</option>
+                            <option value="2">2 pasajeros</option>
+                            <option value="5">5 pasajeros</option>
+                            <option value="7">7 pasajeros</option>
+                            <option value="8">8 pasajeros</option>
+                        </select>
+                    </div>
+                    
+                    <!-- Campos para Camión -->
+                    <div class="form-group campo-camion" style="display: none;">
+                        <label for="edit-vehiculo-carga-maxima-camion">Carga Máxima (kg)</label>
+                        <input type="number" id="edit-vehiculo-carga-maxima-camion" min="0" step="0.1" placeholder="10000">
+                    </div>
+                    <div class="form-group campo-camion" style="display: none;">
+                        <label for="edit-vehiculo-numero-ejes">Número de Ejes</label>
+                        <select id="edit-vehiculo-numero-ejes">
+                            <option value="">Seleccionar</option>
+                            <option value="2">2 ejes</option>
+                            <option value="3">3 ejes</option>
+                            <option value="4">4 ejes</option>
+                            <option value="5">5 ejes</option>
+                            <option value="6">6 ejes</option>
+                        </select>
+                    </div>
+                </div>
+                
                 <div class="form-actions">
                     <button type="button" class="btn btn-secondary modal-close">Cancelar</button>
                     <button type="submit" class="btn btn-primary">

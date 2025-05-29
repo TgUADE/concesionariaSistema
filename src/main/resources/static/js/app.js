@@ -44,6 +44,17 @@ function setupEventListeners() {
         filtrarVehiculos(tipo);
     });
 
+    // Cambio en tipo de vehículo para mostrar campos específicos
+    document.getElementById('vehiculo-tipo').addEventListener('change', function() {
+        const tipo = this.value;
+        mostrarCamposEspecificos('campos-especificos-vehiculo', tipo);
+    });
+
+    document.getElementById('edit-vehiculo-tipo').addEventListener('change', function() {
+        const tipo = this.value;
+        mostrarCamposEspecificos('campos-especificos-edit-vehiculo', tipo);
+    });
+
     // Filtro de pedidos por estado
     document.getElementById('filtro-estado').addEventListener('change', function() {
         const estado = this.value;
@@ -221,42 +232,82 @@ function renderVehiculos(vehiculos) {
         return;
     }
     
-    container.innerHTML = vehiculos.map(vehiculo => `
-        <div class="vehicle-card">
-            <div class="vehicle-header">
-                <span class="vehicle-type">${vehiculo.tipo}</span>
-                <span class="vehicle-price">$${formatNumber(vehiculo.precio)}</span>
-            </div>
-            <div class="vehicle-info">
-                <h3>${vehiculo.marca} ${vehiculo.modelo}</h3>
-                <div class="vehicle-details">
-                    ${vehiculo.año ? `<p><strong>Año:</strong> ${vehiculo.año}</p>` : ''}
-                    ${vehiculo.color ? `<p><strong>Color:</strong> ${vehiculo.color}</p>` : ''}
-                    <p><strong>Disponible:</strong> ${vehiculo.disponible ? 'Sí' : 'No'}</p>
+    container.innerHTML = vehiculos.map(vehiculo => {
+        // Generar atributos específicos según el tipo
+        let atributosEspecificos = '';
+        switch (vehiculo.tipo.toUpperCase()) {
+            case 'AUTO':
+                if (vehiculo.puertas !== undefined) {
+                    atributosEspecificos += `<p><strong>Puertas:</strong> ${vehiculo.puertas}</p>`;
+                }
+                break;
+            case 'MOTO':
+                if (vehiculo.tipoMoto) {
+                    atributosEspecificos += `<p><strong>Tipo:</strong> ${vehiculo.tipoMoto}</p>`;
+                }
+                if (vehiculo.cilindrada !== undefined) {
+                    atributosEspecificos += `<p><strong>Cilindrada:</strong> ${vehiculo.cilindrada}cc</p>`;
+                }
+                break;
+            case 'CAMIONETA':
+                if (vehiculo.cargaMaximaCamioneta !== undefined) {
+                    atributosEspecificos += `<p><strong>Carga Máxima:</strong> ${vehiculo.cargaMaximaCamioneta}kg</p>`;
+                }
+                if (vehiculo.traccion4x4 !== undefined) {
+                    atributosEspecificos += `<p><strong>Tracción 4x4:</strong> ${vehiculo.traccion4x4 ? 'Sí' : 'No'}</p>`;
+                }
+                if (vehiculo.capacidadPasajeros !== undefined) {
+                    atributosEspecificos += `<p><strong>Pasajeros:</strong> ${vehiculo.capacidadPasajeros}</p>`;
+                }
+                break;
+            case 'CAMION':
+                if (vehiculo.cargaMaximaCamion !== undefined) {
+                    atributosEspecificos += `<p><strong>Carga Máxima:</strong> ${vehiculo.cargaMaximaCamion}kg</p>`;
+                }
+                if (vehiculo.numeroEjes !== undefined) {
+                    atributosEspecificos += `<p><strong>Número de Ejes:</strong> ${vehiculo.numeroEjes}</p>`;
+                }
+                break;
+        }
+        
+        return `
+            <div class="vehicle-card">
+                <div class="vehicle-header">
+                    <span class="vehicle-type">${vehiculo.tipo}</span>
+                    <span class="vehicle-price">$${formatNumber(vehiculo.precio)}</span>
+                </div>
+                <div class="vehicle-info">
+                    <h3>${vehiculo.marca} ${vehiculo.modelo}</h3>
+                    <div class="vehicle-details">
+                        ${vehiculo.año ? `<p><strong>Año:</strong> ${vehiculo.año}</p>` : ''}
+                        ${vehiculo.color ? `<p><strong>Color:</strong> ${vehiculo.color}</p>` : ''}
+                        <p><strong>Disponible:</strong> ${vehiculo.disponible ? 'Sí' : 'No'}</p>
+                        ${atributosEspecificos}
+                    </div>
+                </div>
+                <div class="vehicle-actions">
+                    ${vehiculo.disponible 
+                        ? `<button class="btn btn-success" onclick="abrirModalPedido(${vehiculo.id})">
+                            <i class="fas fa-shopping-cart"></i> Hacer Pedido
+                           </button>`
+                        : `<button class="btn btn-secondary" disabled title="Vehículo no disponible">
+                            <i class="fas fa-ban"></i> No Disponible
+                           </button>`
+                    }
+                    <button class="btn btn-primary" onclick="abrirModalEditarVehiculo(${vehiculo.id})">
+                        <i class="fas fa-edit"></i> Editar
+                    </button>
+                    <button class="btn btn-secondary" onclick="verDetallesVehiculo(${vehiculo.id})">
+                        <i class="fas fa-info-circle"></i> Detalles
+                    </button>
+                    <button class="btn btn-danger" onclick="eliminarVehiculo(${vehiculo.id})" 
+                            title="Eliminar vehículo">
+                        <i class="fas fa-trash"></i>
+                    </button>
                 </div>
             </div>
-            <div class="vehicle-actions">
-                ${vehiculo.disponible 
-                    ? `<button class="btn btn-success" onclick="abrirModalPedido(${vehiculo.id})">
-                        <i class="fas fa-shopping-cart"></i> Hacer Pedido
-                       </button>`
-                    : `<button class="btn btn-secondary" disabled title="Vehículo no disponible">
-                        <i class="fas fa-ban"></i> No Disponible
-                       </button>`
-                }
-                <button class="btn btn-primary" onclick="abrirModalEditarVehiculo(${vehiculo.id})">
-                    <i class="fas fa-edit"></i> Editar
-                </button>
-                <button class="btn btn-secondary" onclick="verDetallesVehiculo(${vehiculo.id})">
-                    <i class="fas fa-info-circle"></i> Detalles
-                </button>
-                <button class="btn btn-danger" onclick="eliminarVehiculo(${vehiculo.id})" 
-                        title="Eliminar vehículo">
-                    <i class="fas fa-trash"></i>
-                </button>
-            </div>
-        </div>
-    `).join('');
+        `;
+    }).join('');
 }
 
 function renderVehiculosEmpty() {
@@ -359,14 +410,43 @@ async function crearVehiculo() {
     try {
         showLoading(true);
         
+        const tipo = document.getElementById('vehiculo-tipo').value;
         const formData = {
-            tipo: document.getElementById('vehiculo-tipo').value,
+            tipo: tipo,
             marca: document.getElementById('vehiculo-marca').value,
             modelo: document.getElementById('vehiculo-modelo').value,
             año: parseInt(document.getElementById('vehiculo-año').value),
             color: document.getElementById('vehiculo-color').value,
             precio: parseFloat(document.getElementById('vehiculo-precio').value)
         };
+
+        // Agregar atributos específicos según el tipo de vehículo
+        switch (tipo.toUpperCase()) {
+            case 'AUTO':
+                const puertas = document.getElementById('vehiculo-puertas').value;
+                if (puertas) formData.puertas = parseInt(puertas);
+                break;
+            case 'MOTO':
+                const tipoMoto = document.getElementById('vehiculo-tipo-moto').value;
+                const cilindrada = document.getElementById('vehiculo-cilindrada').value;
+                if (tipoMoto) formData.tipoMoto = tipoMoto;
+                if (cilindrada) formData.cilindrada = parseInt(cilindrada);
+                break;
+            case 'CAMIONETA':
+                const cargaMaximaCamioneta = document.getElementById('vehiculo-carga-maxima-camioneta').value;
+                const traccion4x4 = document.getElementById('vehiculo-traccion4x4').value;
+                const capacidadPasajeros = document.getElementById('vehiculo-capacidad-pasajeros').value;
+                if (cargaMaximaCamioneta) formData.cargaMaximaCamioneta = parseFloat(cargaMaximaCamioneta);
+                if (traccion4x4) formData.traccion4x4 = traccion4x4 === 'true';
+                if (capacidadPasajeros) formData.capacidadPasajeros = parseInt(capacidadPasajeros);
+                break;
+            case 'CAMION':
+                const cargaMaximaCamion = document.getElementById('vehiculo-carga-maxima-camion').value;
+                const numeroEjes = document.getElementById('vehiculo-numero-ejes').value;
+                if (cargaMaximaCamion) formData.cargaMaximaCamion = parseFloat(cargaMaximaCamion);
+                if (numeroEjes) formData.numeroEjes = parseInt(numeroEjes);
+                break;
+        }
 
         const response = await fetch(`${API_BASE_URL}/vehiculos`, {
             method: 'POST',
@@ -384,6 +464,7 @@ async function crearVehiculo() {
         
         showToast('Vehículo creado exitosamente', 'success');
         document.getElementById('form-nuevo-vehiculo').reset();
+        ocultarCamposEspecificos('campos-especificos-vehiculo');
         
         // Recargar vehículos y cambiar a tab de vehículos
         await cargarVehiculos();
@@ -503,15 +584,49 @@ function verDetallesVehiculo(vehiculoId) {
         return;
     }
     
-    const detalles = `
-        Tipo: ${vehiculo.tipo}
-        Marca: ${vehiculo.marca}
-        Modelo: ${vehiculo.modelo}
-        ${vehiculo.año ? `Año: ${vehiculo.año}\n` : ''}
-        ${vehiculo.color ? `Color: ${vehiculo.color}\n` : ''}
-        Precio: $${formatNumber(vehiculo.precio)}
-        Disponible: ${vehiculo.disponible ? 'Sí' : 'No'}
-    `;
+    let detalles = `Tipo: ${vehiculo.tipo}
+Marca: ${vehiculo.marca}
+Modelo: ${vehiculo.modelo}
+${vehiculo.año ? `Año: ${vehiculo.año}\n` : ''}
+${vehiculo.color ? `Color: ${vehiculo.color}\n` : ''}
+Precio: $${formatNumber(vehiculo.precio)}
+Disponible: ${vehiculo.disponible ? 'Sí' : 'No'}`;
+
+    // Agregar atributos específicos según el tipo
+    switch (vehiculo.tipo.toUpperCase()) {
+        case 'AUTO':
+            if (vehiculo.puertas !== undefined) {
+                detalles += `\nPuertas: ${vehiculo.puertas}`;
+            }
+            break;
+        case 'MOTO':
+            if (vehiculo.tipoMoto) {
+                detalles += `\nTipo de Moto: ${vehiculo.tipoMoto}`;
+            }
+            if (vehiculo.cilindrada !== undefined) {
+                detalles += `\nCilindrada: ${vehiculo.cilindrada}cc`;
+            }
+            break;
+        case 'CAMIONETA':
+            if (vehiculo.cargaMaximaCamioneta !== undefined) {
+                detalles += `\nCarga Máxima: ${vehiculo.cargaMaximaCamioneta}kg`;
+            }
+            if (vehiculo.traccion4x4 !== undefined) {
+                detalles += `\nTracción 4x4: ${vehiculo.traccion4x4 ? 'Sí' : 'No'}`;
+            }
+            if (vehiculo.capacidadPasajeros !== undefined) {
+                detalles += `\nCapacidad de Pasajeros: ${vehiculo.capacidadPasajeros}`;
+            }
+            break;
+        case 'CAMION':
+            if (vehiculo.cargaMaximaCamion !== undefined) {
+                detalles += `\nCarga Máxima: ${vehiculo.cargaMaximaCamion}kg`;
+            }
+            if (vehiculo.numeroEjes !== undefined) {
+                detalles += `\nNúmero de Ejes: ${vehiculo.numeroEjes}`;
+            }
+            break;
+    }
     
     alert(detalles);
 }
@@ -687,6 +802,10 @@ function abrirModalEditarVehiculo(vehiculoId) {
     document.getElementById('edit-vehiculo-precio').value = vehiculo.precio;
     document.getElementById('edit-vehiculo-disponible').value = vehiculo.disponible.toString();
     
+    // Cargar atributos específicos según el tipo y mostrar campos correspondientes
+    mostrarCamposEspecificos('campos-especificos-edit-vehiculo', vehiculo.tipo);
+    cargarAtributosEspecificos(vehiculo);
+    
     // Mostrar modal
     document.getElementById('modal-editar-vehiculo').classList.add('show');
 }
@@ -695,6 +814,7 @@ function cerrarModalEditarVehiculo() {
     document.getElementById('modal-editar-vehiculo').classList.remove('show');
     vehiculoEnEdicion = null;
     document.getElementById('form-editar-vehiculo').reset();
+    ocultarCamposEspecificos('campos-especificos-edit-vehiculo');
 }
 
 function cerrarModalEditarPedido() {
@@ -712,8 +832,9 @@ async function editarVehiculo() {
     try {
         showLoading(true);
         
+        const tipo = document.getElementById('edit-vehiculo-tipo').value;
         const formData = {
-            tipo: document.getElementById('edit-vehiculo-tipo').value,
+            tipo: tipo,
             marca: document.getElementById('edit-vehiculo-marca').value,
             modelo: document.getElementById('edit-vehiculo-modelo').value,
             año: parseInt(document.getElementById('edit-vehiculo-año').value),
@@ -721,6 +842,34 @@ async function editarVehiculo() {
             precio: parseFloat(document.getElementById('edit-vehiculo-precio').value),
             disponible: document.getElementById('edit-vehiculo-disponible').value === 'true'
         };
+
+        // Agregar atributos específicos según el tipo de vehículo
+        switch (tipo.toUpperCase()) {
+            case 'AUTO':
+                const puertas = document.getElementById('edit-vehiculo-puertas').value;
+                if (puertas) formData.puertas = parseInt(puertas);
+                break;
+            case 'MOTO':
+                const tipoMoto = document.getElementById('edit-vehiculo-tipo-moto').value;
+                const cilindrada = document.getElementById('edit-vehiculo-cilindrada').value;
+                if (tipoMoto) formData.tipoMoto = tipoMoto;
+                if (cilindrada) formData.cilindrada = parseInt(cilindrada);
+                break;
+            case 'CAMIONETA':
+                const cargaMaximaCamioneta = document.getElementById('edit-vehiculo-carga-maxima-camioneta').value;
+                const traccion4x4 = document.getElementById('edit-vehiculo-traccion4x4').value;
+                const capacidadPasajeros = document.getElementById('edit-vehiculo-capacidad-pasajeros').value;
+                if (cargaMaximaCamioneta) formData.cargaMaximaCamioneta = parseFloat(cargaMaximaCamioneta);
+                if (traccion4x4) formData.traccion4x4 = traccion4x4 === 'true';
+                if (capacidadPasajeros) formData.capacidadPasajeros = parseInt(capacidadPasajeros);
+                break;
+            case 'CAMION':
+                const cargaMaximaCamion = document.getElementById('edit-vehiculo-carga-maxima-camion').value;
+                const numeroEjes = document.getElementById('edit-vehiculo-numero-ejes').value;
+                if (cargaMaximaCamion) formData.cargaMaximaCamion = parseFloat(cargaMaximaCamion);
+                if (numeroEjes) formData.numeroEjes = parseInt(numeroEjes);
+                break;
+        }
 
         const response = await fetch(`${API_BASE_URL}/vehiculos/${vehiculoEnEdicion.id}`, {
             method: 'PUT',
@@ -893,6 +1042,82 @@ function buscarVehiculo(query) {
     );
     
     renderVehiculos(resultados);
+}
+
+// Funciones auxiliares para campos específicos por tipo de vehículo
+
+// Mostrar campos específicos según el tipo de vehículo
+function mostrarCamposEspecificos(containerId, tipo) {
+    const container = document.getElementById(containerId);
+    if (!container) return;
+    
+    // Ocultar todos los campos específicos
+    const camposEspecificos = container.querySelectorAll('.form-group');
+    camposEspecificos.forEach(campo => {
+        campo.style.display = 'none';
+    });
+    
+    // Mostrar solo los campos del tipo seleccionado
+    if (tipo) {
+        const camposDelTipo = container.querySelectorAll(`.campo-${tipo.toLowerCase()}`);
+        camposDelTipo.forEach(campo => {
+            campo.style.display = 'block';
+        });
+    }
+}
+
+// Ocultar todos los campos específicos
+function ocultarCamposEspecificos(containerId) {
+    const container = document.getElementById(containerId);
+    if (!container) return;
+    
+    const camposEspecificos = container.querySelectorAll('.form-group');
+    camposEspecificos.forEach(campo => {
+        campo.style.display = 'none';
+        // Limpiar valores
+        const input = campo.querySelector('input, select');
+        if (input) {
+            input.value = '';
+        }
+    });
+}
+
+// Cargar atributos específicos en el formulario de edición
+function cargarAtributosEspecificos(vehiculo) {
+    switch (vehiculo.tipo.toUpperCase()) {
+        case 'AUTO':
+            if (vehiculo.puertas !== undefined) {
+                document.getElementById('edit-vehiculo-puertas').value = vehiculo.puertas;
+            }
+            break;
+        case 'MOTO':
+            if (vehiculo.tipoMoto) {
+                document.getElementById('edit-vehiculo-tipo-moto').value = vehiculo.tipoMoto;
+            }
+            if (vehiculo.cilindrada !== undefined) {
+                document.getElementById('edit-vehiculo-cilindrada').value = vehiculo.cilindrada;
+            }
+            break;
+        case 'CAMIONETA':
+            if (vehiculo.cargaMaximaCamioneta !== undefined) {
+                document.getElementById('edit-vehiculo-carga-maxima-camioneta').value = vehiculo.cargaMaximaCamioneta;
+            }
+            if (vehiculo.traccion4x4 !== undefined) {
+                document.getElementById('edit-vehiculo-traccion4x4').value = vehiculo.traccion4x4.toString();
+            }
+            if (vehiculo.capacidadPasajeros !== undefined) {
+                document.getElementById('edit-vehiculo-capacidad-pasajeros').value = vehiculo.capacidadPasajeros;
+            }
+            break;
+        case 'CAMION':
+            if (vehiculo.cargaMaximaCamion !== undefined) {
+                document.getElementById('edit-vehiculo-carga-maxima-camion').value = vehiculo.cargaMaximaCamion;
+            }
+            if (vehiculo.numeroEjes !== undefined) {
+                document.getElementById('edit-vehiculo-numero-ejes').value = vehiculo.numeroEjes;
+            }
+            break;
+    }
 }
 
 // Manejo de errores de red

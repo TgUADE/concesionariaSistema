@@ -1,6 +1,11 @@
 
 import java.io.*;
 import java.util.*;
+import java.util.List; // Added import
+import java.util.ArrayList; // Added import
+
+// Assuming Usuario class is in the same package or imported correctly if in another.
+// import controller.Usuario; // If Usuario is in controller package
 
 /**
  * 
@@ -50,7 +55,7 @@ public class Pedido {
     /**
      * 
      */
-    private double total;
+    private double total; // This might be deprecated or used for sub-totals.
 
     /**
      * 
@@ -62,21 +67,44 @@ public class Pedido {
      */
     private ServicioDeNotificacion servicioDeNotificacion;
 
+    // New fields
+    private List<String> configuracionesAdicionales;
+    private double costoTotal; // This will be the final calculated cost
+    private String datosFacturacion;
+    private Usuario vendedor; // Assuming Usuario class exists and is importable
+    private String areaResponsableActual;
+    private List<String> historialEstados;
+
     /**
-     * Default constructor
+     * Updated constructor
      */
-    public Pedido(int idPedido, int numeroDePedido, Date fechaDeCreacion, ICliente cliente, IVehiculo vehiculo, String estado, IFormaDePago formaDePago, InterfazImpuestoStrategy impuestoStrategy, double total, ServicioDePago servicioDePago, ServicioDeNotificacion servicioDeNotificacion) {
+    public Pedido(int idPedido, int numeroDePedido, Date fechaDeCreacion, ICliente cliente, 
+                  IVehiculo vehiculo, String estadoInitial, IFormaDePago formaDePago, 
+                  InterfazImpuestoStrategy impuestoStrategy, double initialTotal, 
+                  ServicioDePago servicioDePago, ServicioDeNotificacion servicioDeNotificacion,
+                  Usuario vendedor, String datosFacturacion, String areaResponsableActual) {
         this.idPedido = idPedido;
         this.numeroDePedido = numeroDePedido;
         this.fechaDeCreacion = fechaDeCreacion;
         this.cliente = cliente;
         this.vehiculo = vehiculo;
-        this.estado = estado;
+        this.estado = estadoInitial; // Renamed to avoid confusion with field name
         this.formaDePago = formaDePago;
         this.impuestoStrategy = impuestoStrategy;
-        this.total = total; // Assuming total is calculated or passed in initially.
+        this.total = initialTotal; // This might be precioBase from vehicle initially
         this.servicioDePago = servicioDePago;
         this.servicioDeNotificacion = servicioDeNotificacion;
+        
+        this.vendedor = vendedor;
+        this.datosFacturacion = datosFacturacion;
+        this.areaResponsableActual = areaResponsableActual;
+
+        this.configuracionesAdicionales = new ArrayList<>();
+        this.historialEstados = new ArrayList<>();
+        if (estadoInitial != null && !estadoInitial.isEmpty()) {
+            this.historialEstados.add(estadoInitial);
+        }
+        this.costoTotal = 0; // Will be calculated by calcularCostoTotal()
     }
 
 
@@ -94,7 +122,8 @@ public class Pedido {
      * 
      */
     public void actualizarEstadoPedido(String nuevoEstado) {
-        this.estado = nuevoEstado;
+        // this.estado = nuevoEstado; // This will be handled by agregarHistorialEstado
+        this.agregarHistorialEstado(nuevoEstado); // Call the new method
         // TODO: Add any other logic related to state change.
         if (this.servicioDeNotificacion != null) {
             this.servicioDeNotificacion.enviarNotificacion("Su pedido ha sido actualizado a: " + this.estado, this.cliente);
@@ -102,17 +131,62 @@ public class Pedido {
     }
 
     /**
-     * 
+     * Adds a new state to the history and updates the current state.
+     * @param nuevoEstado The new state to add.
+     */
+    public void agregarHistorialEstado(String nuevoEstado) {
+        if (nuevoEstado != null && !nuevoEstado.isEmpty()) {
+            this.historialEstados.add(nuevoEstado);
+            this.estado = nuevoEstado; // Update current state
+        }
+    }
+
+    /**
+     * Calculates the total cost of the order including base price, taxes, and additional configurations.
+     */
+    public void calcularCostoTotal() {
+        double basePrice = 0;
+        if (this.vehiculo != null) {
+            basePrice = this.vehiculo.getPrecioBase();
+        }
+
+        double calculatedTaxes = 0;
+        if (this.impuestoStrategy != null) {
+            // Assuming calcularImpuesto() now returns the tax amount
+            // It might need parameters like basePrice or vehicle details,
+            // but the interface was simplified to just calcularImpuesto().
+            // If it needs parameters, the interface InterfazImpuestoStrategy needs to be updated.
+            // For now, let's assume it can calculate based on internal state or a global context if necessary.
+            calculatedTaxes = this.impuestoStrategy.calcularImpuesto(); 
+        }
+
+        double costOfConfiguracionesAdicionales = 0;
+        if (this.configuracionesAdicionales != null) {
+            costOfConfiguracionesAdicionales = this.configuracionesAdicionales.size() * 500.0; // 500 per item
+        }
+
+        this.costoTotal = basePrice + calculatedTaxes + costOfConfiguracionesAdicionales;
+        this.total = this.costoTotal; // Optional: Update 'total' to reflect the final cost as well.
+                                      // Or 'total' could remain as initialTotal/subTotal.
+                                      // For now, aligning it with costoTotal.
+        System.out.println("Costo total calculado: " + this.costoTotal);
+    }
+
+
+    /**
+     * This method might be deprecated or changed if calcularCostoTotal covers its responsibility.
+     * For now, it is assumed that calcularImpuesto in the strategy returns the tax amount directly.
      */
     public void calcularImpuestos() {
-        // Assuming impuestoStrategy.calcularImpuesto() might modify total directly
-        // or return a value. If it returns, we should use it:
-        // double impuestoCalculado = this.impuestoStrategy.calcularImpuesto(this.vehiculo, this.total_base_sin_impuesto);
-        // this.total += impuestoCalculado;
-        // For now, calling it as if it might modify state or use its own data.
+        // This method's logic is now largely covered by calcularCostoTotal.
+        // It could be kept for specific tax calculation logging or if the strategy
+        // directly modifies 'this.total' or another field.
+        // If impuestoStrategy.calcularImpuesto() returns a value, it's used in calcularCostoTotal.
         if (this.impuestoStrategy != null) {
-            this.impuestoStrategy.calcularImpuesto(); // Or: this.total += this.impuestoStrategy.calcularImpuesto(this.total);
-            System.out.println("Impuestos calculados para el pedido.");
+            // double taxes = this.impuestoStrategy.calcularImpuesto(); // Example if it returns tax
+            // System.out.println("Impuestos calculados (valor): " + taxes);
+            // this.total += taxes; // If 'total' is meant to accumulate this way
+            System.out.println("Método calcularImpuestos() llamado. La lógica principal está en calcularCostoTotal().");
         }
     }
 
@@ -225,5 +299,58 @@ public class Pedido {
 
     public void setServicioDeNotificacion(ServicioDeNotificacion servicioDeNotificacion) {
         this.servicioDeNotificacion = servicioDeNotificacion;
+    }
+
+    // Getters and Setters for new fields
+
+    public List<String> getConfiguracionesAdicionales() {
+        return configuracionesAdicionales;
+    }
+
+    public void setConfiguracionesAdicionales(List<String> configuracionesAdicionales) {
+        this.configuracionesAdicionales = configuracionesAdicionales;
+    }
+
+    public double getCostoTotal() {
+        // It's good practice to ensure costoTotal is up-to-date if it's derived
+        // Or ensure calcularCostoTotal() is called before getting.
+        // For now, just returning the field value.
+        return costoTotal;
+    }
+
+    public void setCostoTotal(double costoTotal) {
+        this.costoTotal = costoTotal;
+    }
+
+    public String getDatosFacturacion() {
+        return datosFacturacion;
+    }
+
+    public void setDatosFacturacion(String datosFacturacion) {
+        this.datosFacturacion = datosFacturacion;
+    }
+
+    public Usuario getVendedor() {
+        return vendedor;
+    }
+
+    public void setVendedor(Usuario vendedor) {
+        this.vendedor = vendedor;
+    }
+
+    public String getAreaResponsableActual() {
+        return areaResponsableActual;
+    }
+
+    public void setAreaResponsableActual(String areaResponsableActual) {
+        this.areaResponsableActual = areaResponsableActual;
+    }
+
+    public List<String> getHistorialEstados() {
+        return historialEstados;
+    }
+
+    public void setHistorialEstados(List<String> historialEstados) {
+        this.historialEstados = historialEstados;
     }
 }

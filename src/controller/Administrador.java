@@ -22,49 +22,51 @@ public class Administrador extends Usuario {
      * 
      */
     public void gestionarClientes() {
-        // TODO implement here
+        System.out.println("Administrador: Gestionando clientes...");
     }
 
     /**
      * 
      */
     public void gestionarVehiculos() {
-        // TODO implement here
+        System.out.println("Administrador: Gestionando vehículos...");
     }
 
     /**
      * 
      */
     public void gestionarPedidos() {
-        // TODO implement here
+        System.out.println("Administrador: Gestionando pedidos...");
     }
 
     /**
      * 
      */
     public void generarInformes() {
-        // TODO implement here
+        System.out.println("Administrador: Generando informes...");
     }
 
     /**
      * 
      */
     public void configurarSistema() {
-        // TODO implement here
+        System.out.println("Administrador: Configurando sistema...");
     }
 
     /**
-     * 
+     * Sets the area for the administrator.
+     * @param area The area to set.
      */
-    public void setArea() {
-        // TODO implement here
+    public void setArea(String area) {
+        this.area = area;
     }
 
     /**
-     * 
+     * Gets the area of the administrator.
+     * @return The area of the administrator.
      */
-    public void getArea() {
-        // TODO implement here
+    public String getArea() {
+        return this.area;
     }
 
 }

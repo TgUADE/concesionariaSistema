@@ -16,7 +16,7 @@ public class Usuario {
     /**
      * 
      */
-    private Int idUsuario;
+    private int idUsuario; // Corrected type from Int to int
 
     /**
      * 
@@ -26,55 +26,61 @@ public class Usuario {
     /**
      * 
      */
-    public String apellido;
+    private String apellido; // Made private
 
     /**
      * 
      */
     private String mail;
 
-
-
     /**
      * 
      */
-    public void setNombre() {
-        // TODO implement here
+    private String rol; // Added new field
+
+    // Getter and Setter for idUsuario
+    public int getIdUsuario() {
+        return idUsuario;
     }
 
-    /**
-     * 
-     */
-    public void setMail() {
-        // TODO implement here
+    public void setIdUsuario(int idUsuario) {
+        this.idUsuario = idUsuario;
     }
 
-    /**
-     * 
-     */
-    public void setRol() {
-        // TODO implement here
+    // Getter and Setter for nombre
+    public String getNombre() {
+        return nombre;
     }
 
-    /**
-     * 
-     */
-    public void getNombre() {
-        // TODO implement here
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 
-    /**
-     * 
-     */
-    public void getMail() {
-        // TODO implement here
+    // Getter and Setter for apellido
+    public String getApellido() {
+        return apellido;
     }
 
-    /**
-     * 
-     */
-    public void getRol() {
-        // TODO implement here
+    public void setApellido(String apellido) {
+        this.apellido = apellido;
+    }
+
+    // Getter and Setter for mail
+    public String getMail() {
+        return mail;
+    }
+
+    public void setMail(String mail) {
+        this.mail = mail;
+    }
+
+    // Getter and Setter for rol
+    public String getRol() {
+        return rol;
+    }
+
+    public void setRol(String rol) {
+        this.rol = rol;
     }
 
 }

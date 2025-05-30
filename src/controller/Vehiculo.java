@@ -48,6 +48,11 @@ public class Vehiculo implements IVehiculo {
      */
     private boolean disponibleVenta;
 
+    /**
+     * 
+     */
+    private double precioBase;
+
     public int getIdVehiculo() {
         return idVehiculo;
     }
@@ -104,6 +109,14 @@ public class Vehiculo implements IVehiculo {
 
     public void setDisponibleVenta(boolean disponibleVenta) {
         this.disponibleVenta = disponibleVenta;
+    }
+
+    public double getPrecioBase() {
+        return precioBase;
+    }
+
+    public void setPrecioBase(double precioBase) {
+        this.precioBase = precioBase;
     }
 
 }

@@ -16,34 +16,36 @@ public class Vendedor extends Usuario {
     /**
      * 
      */
-    private Int ventasTotales;
+    private int ventasTotales; // Corrected type from Int to int
 
     /**
      * 
      */
     public void consultarCatalogoDeVehiculos() {
-        // TODO implement here
+        System.out.println("Vendedor: Consultando catálogo de vehículos...");
     }
 
     /**
      * 
      */
     public void gestionarVentas() {
-        // TODO implement here
+        System.out.println("Vendedor: Gestionando ventas...");
     }
 
     /**
-     * 
+     * Gets the total sales for the vendor.
+     * @return The total sales.
      */
-    public void getVentasTotales() {
-        // TODO implement here
+    public int getVentasTotales() {
+        return this.ventasTotales;
     }
 
     /**
-     * 
+     * Sets the total sales for the vendor.
+     * @param ventasTotales The total sales to set.
      */
-    public void setVentasTotales() {
-        // TODO implement here
+    public void setVentasTotales(int ventasTotales) {
+        this.ventasTotales = ventasTotales;
     }
 
 }

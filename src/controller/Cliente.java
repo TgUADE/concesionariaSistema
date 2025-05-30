@@ -20,6 +20,7 @@ public class Cliente implements ICliente {
     private String documento;
     private String correoElectronico;
     private String telefono;
+    private int idCliente; // Added field for client ID
     // Assuming other fields like email, direccion might exist or be added later.
     // For now, only implementing what's in ICliente.
 
@@ -92,6 +93,21 @@ public class Cliente implements ICliente {
      */
     public void setTelefono(String telefono) {
         this.telefono = telefono;
+    }
+
+    /**
+     * @return the idCliente
+     */
+    @Override
+    public int getIdCliente() {
+        return idCliente;
+    }
+
+    /**
+     * @param idCliente the idCliente to set
+     */
+    public void setIdCliente(int idCliente) {
+        this.idCliente = idCliente;
     }
 
 }

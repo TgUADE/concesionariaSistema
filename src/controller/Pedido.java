@@ -154,10 +154,8 @@ public class Pedido {
         if (this.impuestoStrategy != null) {
             // Assuming calcularImpuesto() now returns the tax amount
             // It might need parameters like basePrice or vehicle details,
-            // but the interface was simplified to just calcularImpuesto().
-            // If it needs parameters, the interface InterfazImpuestoStrategy needs to be updated.
-            // For now, let's assume it can calculate based on internal state or a global context if necessary.
-            calculatedTaxes = this.impuestoStrategy.calcularImpuesto(); 
+            // The InterfazImpuestoStrategy.calcularImpuesto now takes precioBase.
+            calculatedTaxes = this.impuestoStrategy.calcularImpuesto(basePrice); 
         }
 
         double costOfConfiguracionesAdicionales = 0;

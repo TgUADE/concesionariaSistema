@@ -1,0 +1,9 @@
+[ {
+  "pedidos" : null,
+  "idCliente" : 1,
+  "nombre" : "María",
+  "apellido" : "González",
+  "documento" : "87654321",
+  "correoElectronico" : "maria.gonzalez@email.com",
+  "telefono" : "11-8765-4321"
+} ]

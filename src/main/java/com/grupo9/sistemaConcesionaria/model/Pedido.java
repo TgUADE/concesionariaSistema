@@ -6,6 +6,7 @@ import jakarta.validation.constraints.Positive;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.grupo9.sistemaConcesionaria.model.state.EstadoPedidoState;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -15,7 +16,7 @@ import java.util.List;
  * Cumple con las consignas: númeroPedido, fechaCreación, cliente, vehículo, 
  * formaPago, impuestosAplicados, costoTotal, datosFacturación, vendedor, 
  * estadoActual, historialEstados
- * Ahora con soporte para persistencia JSON
+ * Ahora con soporte para persistencia JSON y patrón State
  */
 @Entity
 @Table(name = "pedidos")
@@ -82,6 +83,12 @@ public class Pedido {
     @JsonProperty("areaResponsableActual")
     private String areaResponsableActual = "Ventas";
 
+    // ===== PATRÓN STATE =====
+    
+    @Transient // No persiste en BD, se maneja en tiempo de ejecución
+    @com.fasterxml.jackson.annotation.JsonIgnore
+    private EstadoPedidoState estadoState;
+
     @ElementCollection
     @CollectionTable(name = "pedido_historial", joinColumns = @JoinColumn(name = "pedido_id"))
     @JsonProperty("historialEstados")
@@ -105,6 +112,48 @@ public class Pedido {
         this.cliente = cliente;
         this.vehiculo = vehiculo;
         this.formaDePago = formaDePago;
+    }
+
+    // ===== MÉTODOS DEL PATRÓN STATE =====
+    
+    /**
+     * Procesa el pedido usando el patrón State
+     */
+    public void procesarConState() throws Exception {
+        if (estadoState != null) {
+            estadoState.procesar(this);
+        }
+    }
+
+    /**
+     * Avanza al siguiente estado si es posible
+     */
+    public boolean avanzarEstado() throws Exception {
+        if (estadoState != null && estadoState.puedeAvanzar(this)) {
+            EstadoPedidoState siguienteEstado = estadoState.getSiguienteEstado();
+            if (siguienteEstado != null) {
+                this.estadoState = siguienteEstado;
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
+     * Verifica si puede avanzar al siguiente estado
+     */
+    public boolean puedeAvanzar() {
+        return estadoState != null && estadoState.puedeAvanzar(this);
+    }
+
+    /**
+     * Obtiene información del estado actual
+     */
+    public String getEstadoInfo() {
+        if (estadoState != null) {
+            return estadoState.getNombreEstado() + ": " + estadoState.getDescripcionEstado();
+        }
+        return estadoActual.getDescripcion();
     }
 
     // Business methods
@@ -250,6 +299,16 @@ public class Pedido {
         this.historialEstados = historialEstados;
     }
 
+    // ===== GETTER/SETTER PARA STATE PATTERN =====
+    
+    public EstadoPedidoState getEstadoState() {
+        return estadoState;
+    }
+
+    public void setEstadoState(EstadoPedidoState estadoState) {
+        this.estadoState = estadoState;
+    }
+
     @Override
     public String toString() {
         return "Pedido{" +
@@ -258,6 +317,7 @@ public class Pedido {
                 ", fechaCreacion=" + fechaCreacion +
                 ", estadoActual=" + estadoActual +
                 ", costoTotal=" + costoTotal +
+                ", estadoState=" + (estadoState != null ? estadoState.getNombreEstado() : "null") +
                 '}';
     }
 } 

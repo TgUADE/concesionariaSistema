@@ -1,10 +1,14 @@
 package com.grupo9.sistemaConcesionaria.service;
 
-import com.grupo9.sistemaConcesionaria.model.*;
-import com.grupo9.sistemaConcesionaria.exception.PedidoNotFoundException;
-import com.grupo9.sistemaConcesionaria.exception.VehiculoNotFoundException;
-import com.grupo9.sistemaConcesionaria.exception.ClienteNotFoundException;
+import com.grupo9.sistemaConcesionaria.model.Pedido;
+import com.grupo9.sistemaConcesionaria.model.Cliente;
+import com.grupo9.sistemaConcesionaria.model.Vehiculo;
+import com.grupo9.sistemaConcesionaria.model.EstadoPedido;
+import com.grupo9.sistemaConcesionaria.model.FormaDePago;
 import com.grupo9.sistemaConcesionaria.repository.PedidoJsonRepository;
+import com.grupo9.sistemaConcesionaria.exception.PedidoNotFoundException;
+import com.grupo9.sistemaConcesionaria.exception.ClienteNotFoundException;
+import com.grupo9.sistemaConcesionaria.exception.VehiculoNotFoundException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,10 +18,8 @@ import org.slf4j.LoggerFactory;
 import java.util.List;
 
 /**
- * PedidoService - Servicio principal para gestión de pedidos con persistencia JSON
- * Coordina el flujo completo de pedidos utilizando Chain of Responsibility,
- * Observer Pattern, Strategy Pattern (impuestos) y Factory Method (formas de pago)
- * Ahora con persistencia en archivo JSON
+ * Servicio para manejar operaciones CRUD de pedidos
+ * Integra Chain of Responsibility y State Pattern para el procesamiento completo
  */
 @Service
 public class PedidoService {
@@ -39,8 +41,16 @@ public class PedidoService {
     
     @Autowired
     private NotificacionService notificacionService;
+
+    // ===== INTEGRACIÓN CON INFORMACIÓN CONCESIONARIA =====
+    @Autowired
+    private InformacionConcesionariaService informacionConcesionariaService;
     
-    // Handlers para Chain of Responsibility
+    // ===== NUEVO MANAGER DE ESTADOS =====
+    @Autowired
+    private EstadoPedidoManager estadoPedidoManager;
+
+    // Handlers originales para compatibilidad
     @Autowired
     private VentasHandler ventasHandler;
     
@@ -51,11 +61,11 @@ public class PedidoService {
     private ImpuestosHandler impuestosHandler;
 
     /**
-     * Configura la cadena de responsabilidad en PostConstruct
+     * Configuración inicial del servicio
      */
     @jakarta.annotation.PostConstruct
-    public void configurarCadenaDeResponsabilidad() {
-        // Configurar el flujo: Ventas → Cobranzas → Impuestos → Embarque → Logística → Entrega
+    public void configurarServicio() {
+        // Configurar la cadena de responsabilidad original (para compatibilidad)
         ventasHandler
             .setSiguiente(cobranzasHandler)
             .setSiguiente(impuestosHandler);
@@ -65,7 +75,7 @@ public class PedidoService {
     }
 
     /**
-     * Crea un nuevo pedido y lo procesa a través de la cadena
+     * Crea un nuevo pedido y lo procesa a través del sistema completo (Chain + State)
      * @param clienteId ID del cliente
      * @param vehiculoId ID del vehículo
      * @param formaDePago Forma de pago seleccionada
@@ -91,18 +101,22 @@ public class PedidoService {
         // Crear el pedido
         Pedido pedido = new Pedido(cliente, vehiculo, formaDePago);
         
-        // Calcular impuestos iniciales
-        double impuestos = impuestoService.calcularImpuesto(vehiculo);
+        // Calcular impuestos iniciales usando la nueva API
+        double impuestos = impuestoService.calcularTotalImpuestos(vehiculo.getTipo(), vehiculo.getPrecioBase());
         pedido.setImpuestosAplicados(impuestos);
         pedido.calcularCostoTotal();
 
+        // Agregar información de la concesionaria
+        String informacionConcesionaria = informacionConcesionariaService.getInformacionCompleta();
+        pedido.setDatosFacturacion(informacionConcesionaria);
+        
         // Guardar en JSON
         Pedido pedidoGuardado = pedidoRepository.save(pedido);
 
         logger.info("Pedido creado: {} - Costo total: ${:.2f}", 
                    pedidoGuardado.getNumeroDePedido(), pedidoGuardado.getCostoTotal());
 
-        // Procesar a través de la cadena de responsabilidad
+        // ===== PROCESAMIENTO COMPLETO CON NUEVO MANAGER =====
         procesarPedidoCompleto(pedidoGuardado);
 
         // Guardar el pedido procesado
@@ -110,23 +124,57 @@ public class PedidoService {
     }
 
     /**
-     * Procesa un pedido a través de toda la cadena de responsabilidad
+     * Procesa un pedido a través del sistema completo usando el EstadoPedidoManager
      * @param pedido El pedido a procesar
      */
     public void procesarPedidoCompleto(Pedido pedido) throws PedidoNotFoundException {
-        logger.info("Iniciando procesamiento completo del pedido: {}", pedido.getNumeroDePedido());
+        logger.info("=== INICIANDO PROCESAMIENTO COMPLETO ===");
+        logger.info("Pedido: {} | Cliente: {} {} | Vehículo: {} {}", 
+                   pedido.getNumeroDePedido(),
+                   pedido.getCliente().getNombre(),
+                   pedido.getCliente().getApellido(),
+                   pedido.getVehiculo().getMarca(),
+                   pedido.getVehiculo().getModelo());
+
+        // Agregar información de la concesionaria al inicio
+        String encabezadoConcesionaria = informacionConcesionariaService.getEncabezadoFactura();
+        pedido.agregarConfiguracion("=== CONCESIONARIA ===");
+        pedido.agregarConfiguracion(encabezadoConcesionaria.replace("\n", " | "));
+        pedido.agregarConfiguracion("=== INICIO PROCESAMIENTO ===");
         
         try {
-            // Iniciar la cadena desde el primer handler (Ventas)
-            ventasHandler.procesar(pedido);
+            // Usar el nuevo manager que coordina Chain of Responsibility + State Pattern
+            estadoPedidoManager.procesarPedidoCompleto(pedido);
             
-            logger.info("Procesamiento completo finalizado para pedido: {}", pedido.getNumeroDePedido());
+            logger.info("=== PROCESAMIENTO COMPLETO FINALIZADO ===");
             
         } catch (Exception e) {
-            logger.error("Error en procesamiento de pedido {}: {}", 
+            logger.error("Error en procesamiento completo de pedido {}: {}", 
                         pedido.getNumeroDePedido(), e.getMessage());
+            
+            // Agregar información del error
+            pedido.agregarConfiguracion("ERROR: " + e.getMessage() + " - " + java.time.LocalDateTime.now());
             throw e;
         }
+    }
+
+    /**
+     * Procesa un estado específico de un pedido existente
+     * @param pedidoId ID del pedido
+     * @param estado Estado específico a procesar
+     */
+    public void procesarEstadoEspecifico(Long pedidoId, EstadoPedido estado) throws Exception {
+        Pedido pedido = getPedido(pedidoId);
+        
+        logger.info("Procesando estado específico {} para pedido {}", 
+                   estado, pedido.getNumeroDePedido());
+        
+        estadoPedidoManager.procesarEstadoEspecifico(pedido, estado);
+        
+        // Guardar cambios
+        pedidoRepository.save(pedido);
+        
+        logger.info("Estado {} procesado para pedido {}", estado, pedido.getNumeroDePedido());
     }
 
     /**
@@ -243,19 +291,99 @@ public class PedidoService {
     }
 
     /**
-     * Obtiene estadísticas de pedidos
+     * Genera reporte completo de un pedido incluyendo información de la concesionaria
+     * @param pedidoId ID del pedido
+     * @return Reporte completo
+     */
+    public String generarReportePedido(Long pedidoId) throws PedidoNotFoundException {
+        Pedido pedido = getPedido(pedidoId);
+        
+        StringBuilder reporte = new StringBuilder();
+        
+        // Encabezado con información de la concesionaria
+        reporte.append("=".repeat(60)).append("\n");
+        reporte.append(informacionConcesionariaService.getEncabezadoFactura()).append("\n");
+        reporte.append(informacionConcesionariaService.getDatosContacto()).append("\n");
+        reporte.append("=".repeat(60)).append("\n\n");
+        
+        // Información del pedido
+        reporte.append("REPORTE DE PEDIDO\n");
+        reporte.append("Número: ").append(pedido.getNumeroDePedido()).append("\n");
+        reporte.append("Fecha: ").append(pedido.getFechaCreacion()).append("\n");
+        reporte.append("Estado: ").append(pedido.getEstadoActual().getDescripcion()).append("\n");
+        
+        // Información del cliente
+        reporte.append("\nCLIENTE:\n");
+        reporte.append("Nombre: ").append(pedido.getCliente().getNombre()).append(" ");
+        reporte.append(pedido.getCliente().getApellido()).append("\n");
+        reporte.append("Documento: ").append(pedido.getCliente().getDocumento()).append("\n");
+        reporte.append("Email: ").append(pedido.getCliente().getMail()).append("\n");
+        
+        // Información del vehículo
+        reporte.append("\nVEHÍCULO:\n");
+        reporte.append("Marca: ").append(pedido.getVehiculo().getMarca()).append("\n");
+        reporte.append("Modelo: ").append(pedido.getVehiculo().getModelo()).append("\n");
+        reporte.append("Chasis: ").append(pedido.getVehiculo().getNumeroChasis()).append("\n");
+        reporte.append("Precio Base: $").append(String.format("%.2f", pedido.getVehiculo().getPrecioBase())).append("\n");
+        
+        // Información financiera
+        reporte.append("\nDETALLE FINANCIERO:\n");
+        reporte.append("Impuestos: $").append(String.format("%.2f", pedido.getImpuestosAplicados())).append("\n");
+        reporte.append("TOTAL: $").append(String.format("%.2f", pedido.getCostoTotal())).append("\n");
+        
+        // Historial de estados
+        reporte.append("\nHISTORIAL DE ESTADOS:\n");
+        pedido.getHistorialEstados().forEach(historial -> {
+            reporte.append("- ").append(historial.getFecha()).append(" | ");
+            reporte.append(historial.getEstado().getDescripcion()).append(" | ");
+            reporte.append(historial.getAreaResponsable()).append("\n");
+        });
+        
+        // Configuraciones adicionales
+        if (!pedido.getConfiguracionesAdicionales().isEmpty()) {
+            reporte.append("\nDETALLE DE PROCESAMIENTO:\n");
+            pedido.getConfiguracionesAdicionales().forEach(config -> {
+                reporte.append("• ").append(config).append("\n");
+            });
+        }
+        
+        reporte.append("\n").append("=".repeat(60));
+        
+        return reporte.toString();
+    }
+
+    /**
+     * Obtiene estadísticas de pedidos incluyendo información de la concesionaria
      * @return Información de estadísticas
      */
     public String getEstadisticas() {
+        StringBuilder stats = new StringBuilder();
+        
+        // Información de la concesionaria
+        stats.append("=== ").append(informacionConcesionariaService.getNombre()).append(" ===\n");
+        stats.append("CUIT: ").append(informacionConcesionariaService.getCuit()).append("\n\n");
+        
+        // Estadísticas por estado
         long totalPedidos = pedidoRepository.count();
         long pedidosVentas = pedidoRepository.countByEstadoActual(EstadoPedido.VENTAS);
         long pedidosCobranzas = pedidoRepository.countByEstadoActual(EstadoPedido.COBRANZAS);
         long pedidosImpuestos = pedidoRepository.countByEstadoActual(EstadoPedido.IMPUESTOS);
+        long pedidosEmbarque = pedidoRepository.countByEstadoActual(EstadoPedido.EMBARQUE);
+        long pedidosLogistica = pedidoRepository.countByEstadoActual(EstadoPedido.LOGISTICA);
+        long pedidosEntrega = pedidoRepository.countByEstadoActual(EstadoPedido.ENTREGA);
+        long pedidosCompletados = pedidoRepository.countByEstadoActual(EstadoPedido.COMPLETADO);
         
-        return String.format(
-            "Estadísticas Pedidos - Total: %d | Ventas: %d | Cobranzas: %d | Impuestos: %d",
-            totalPedidos, pedidosVentas, pedidosCobranzas, pedidosImpuestos
-        );
+        stats.append("ESTADÍSTICAS DE PEDIDOS:\n");
+        stats.append("Total: ").append(totalPedidos).append("\n");
+        stats.append("Ventas: ").append(pedidosVentas).append("\n");
+        stats.append("Cobranzas: ").append(pedidosCobranzas).append("\n");
+        stats.append("Impuestos: ").append(pedidosImpuestos).append("\n");
+        stats.append("Embarque: ").append(pedidosEmbarque).append("\n");
+        stats.append("Logística: ").append(pedidosLogistica).append("\n");
+        stats.append("Entrega: ").append(pedidosEntrega).append("\n");
+        stats.append("Completados: ").append(pedidosCompletados).append("\n");
+        
+        return stats.toString();
     }
 
     /**
@@ -264,12 +392,13 @@ public class PedidoService {
      */
     public String getEstadisticasFinancieras() {
         double totalVentas = pedidoRepository.sumCostoTotal();
-        double ventasImpuestos = pedidoRepository.sumCostoTotalByEstado(EstadoPedido.IMPUESTOS);
+        double ventasCompletadas = pedidoRepository.sumCostoTotalByEstado(EstadoPedido.COMPLETADO);
         
         return String.format(
-            "Estadísticas Financieras - Total Ventas: $%.2f | Completadas: $%.2f | Promedio: $%.2f",
+            "Estadísticas Financieras - %s\nTotal Ventas: $%.2f | Completadas: $%.2f | Promedio: $%.2f",
+            informacionConcesionariaService.getNombre(),
             totalVentas, 
-            ventasImpuestos, 
+            ventasCompletadas, 
             pedidoRepository.count() > 0 ? totalVentas / pedidoRepository.count() : 0.0
         );
     }

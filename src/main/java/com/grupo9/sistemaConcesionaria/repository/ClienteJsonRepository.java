@@ -32,7 +32,14 @@ public class ClienteJsonRepository extends BaseJsonRepository<Cliente, Long> {
                 .max()
                 .orElse(0L);
         
-        cliente.setId(maxId + 1);
+        Long newId = maxId + 1;
+        cliente.setId(newId); // Esto llamará a setIdUsuario(newId)
+        
+        // Asegurarse de que el idUsuario esté establecido correctamente
+        if (cliente.getIdUsuario() == null) {
+            cliente.setIdUsuario(newId);
+        }
+        
         return cliente;
     }
 

@@ -112,12 +112,19 @@ public abstract class BaseJsonRepository<T, ID> implements JsonRepository<T, ID>
             // Auto-generar ID si no existe
             entity = generateId(entity, entities);
             entityId = idExtractor.apply(entity);
+            
+            // Verificar que el ID fue generado correctamente
+            if (entityId == null) {
+                logger.error("No se pudo generar ID para la entidad: {}", entity);
+                throw new IllegalStateException("Error generando ID para la entidad");
+            }
         }
         
         // Buscar y reemplazar si existe, o agregar si es nuevo
         boolean found = false;
         for (int i = 0; i < entities.size(); i++) {
-            if (idExtractor.apply(entities.get(i)).equals(entityId)) {
+            ID existingId = idExtractor.apply(entities.get(i));
+            if (existingId != null && existingId.equals(entityId)) {
                 entities.set(i, entity);
                 found = true;
                 break;

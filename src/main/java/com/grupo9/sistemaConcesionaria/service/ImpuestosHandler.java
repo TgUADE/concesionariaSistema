@@ -49,7 +49,10 @@ public class ImpuestosHandler extends EstadoPedidoHandler {
      * Calcula los impuestos según el tipo de vehículo
      */
     private void calcularImpuestos(Pedido pedido) {
-        double montoImpuestos = impuestoService.calcularImpuesto(pedido.getVehiculo());
+        double montoImpuestos = impuestoService.calcularTotalImpuestos(
+            pedido.getVehiculo().getTipo(), 
+            pedido.getVehiculo().getPrecioBase()
+        );
         
         logger.info("Impuestos calculados para vehículo {} {}: ${}",
                    pedido.getVehiculo().getMarca(),
@@ -69,8 +72,11 @@ public class ImpuestosHandler extends EstadoPedidoHandler {
         
         logger.info("Costo total actualizado con impuestos: ${:.2f}", pedido.getCostoTotal());
 
-        // Generar detalle de impuestos
-        String detalleImpuestos = impuestoService.getDetalleImpuestos(pedido.getVehiculo());
+        // Generar detalle de impuestos usando la nueva API
+        String detalleImpuestos = impuestoService.generarResumenImpuestos(
+            pedido.getVehiculo().getTipo(), 
+            pedido.getVehiculo().getPrecioBase()
+        );
         
         // Agregar el detalle como configuración adicional
         pedido.agregarConfiguracion("DETALLE IMPUESTOS: " + detalleImpuestos.replace("\n", " | "));

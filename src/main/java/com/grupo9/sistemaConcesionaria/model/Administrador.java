@@ -24,6 +24,11 @@ public class Administrador extends Usuario {
         setRol(RolUsuario.ADMINISTRADOR);
     }
 
+    public Administrador(String nombre, String apellido, String mail, String password, String area) {
+        super(nombre, apellido, mail, password, RolUsuario.ADMINISTRADOR);
+        this.area = area;
+    }
+
     public Administrador(String nombre, String apellido, String mail, String area) {
         super(nombre, apellido, mail, RolUsuario.ADMINISTRADOR);
         this.area = area;

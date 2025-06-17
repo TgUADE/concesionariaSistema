@@ -77,9 +77,27 @@ public class Cliente extends Usuario implements ICliente {
         setTelefono(telefono);
     }
 
+    public Cliente(String nombre, String apellido, String mail, String password, String documento, String telefono) {
+        super(nombre, apellido, mail, password, RolUsuario.CLIENTE);
+        this.documento = documento;
+        setTelefono(telefono);
+    }
+
     public Cliente(String nombre, String apellido, String mail, String documento, String telefono, 
                    String cuitCuil, String razonSocial) {
         this(nombre, apellido, mail, documento, telefono);
+        this.cuitCuil = cuitCuil;
+        this.razonSocial = razonSocial;
+        // Si tiene CUIT/CUIL, probablemente necesite factura A
+        if (cuitCuil != null && !cuitCuil.isEmpty()) {
+            this.requiereFacturaA = true;
+            this.tipoFacturacion = TipoFacturacion.RESPONSABLE_INSCRIPTO;
+        }
+    }
+
+    public Cliente(String nombre, String apellido, String mail, String password, String documento, String telefono, 
+                   String cuitCuil, String razonSocial) {
+        this(nombre, apellido, mail, password, documento, telefono);
         this.cuitCuil = cuitCuil;
         this.razonSocial = razonSocial;
         // Si tiene CUIT/CUIL, probablemente necesite factura A

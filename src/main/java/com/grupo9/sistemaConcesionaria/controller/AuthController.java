@@ -8,6 +8,8 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -20,6 +22,8 @@ import java.util.Map;
 @RequestMapping("/api/auth")
 @CrossOrigin(origins = "*")
 public class AuthController {
+
+    private static final Logger logger = LoggerFactory.getLogger(AuthController.class);
 
     @Autowired
     private AuthenticationManager authenticationManager;
@@ -37,6 +41,19 @@ public class AuthController {
     @PostMapping("/login")
     public ResponseEntity<?> login(@RequestBody LoginRequest loginRequest) {
         try {
+            logger.info("Intento de login para email: {}", loginRequest.getEmail());
+            
+            // Verificar si el usuario existe
+            if (!userDetailsService.userExists(loginRequest.getEmail())) {
+                logger.warn("Usuario no encontrado: {}", loginRequest.getEmail());
+                Map<String, String> errorResponse = new HashMap<>();
+                errorResponse.put("error", "Usuario no encontrado");
+                errorResponse.put("mensaje", "El usuario no existe en el sistema");
+                return ResponseEntity.status(401).body(errorResponse);
+            }
+            
+            logger.info("Usuario encontrado, intentando autenticación...");
+            
             // Autenticar usuario
             authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(
@@ -44,6 +61,8 @@ public class AuthController {
                     loginRequest.getPassword()
                 )
             );
+
+            logger.info("Autenticación exitosa para: {}", loginRequest.getEmail());
 
             // Cargar detalles del usuario
             UserDetails userDetails = userDetailsService.loadUserByUsername(loginRequest.getEmail());
@@ -64,12 +83,15 @@ public class AuthController {
             // Agregar permisos específicos por rol
             response.put("permisos", getPermisosPorRol(role));
 
+            logger.info("Login exitoso para usuario: {} con rol: {}", loginRequest.getEmail(), role);
             return ResponseEntity.ok(response);
 
         } catch (Exception e) {
+            logger.error("Error en autenticación para {}: {}", loginRequest.getEmail(), e.getMessage());
             Map<String, String> errorResponse = new HashMap<>();
             errorResponse.put("error", "Credenciales inválidas");
             errorResponse.put("mensaje", "Email o contraseña incorrectos");
+            errorResponse.put("detalle", e.getMessage()); // Temporal para debugging
             return ResponseEntity.status(401).body(errorResponse);
         }
     }

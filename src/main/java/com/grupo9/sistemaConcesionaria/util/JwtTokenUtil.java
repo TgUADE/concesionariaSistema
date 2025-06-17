@@ -20,8 +20,8 @@ import java.util.function.Function;
 @Component
 public class JwtTokenUtil {
 
-    // Clave secreta para firmar los tokens
-    private static final String SECRET = "concesionaria-automax-jwt-secret-key-2024-sistema-seguro";
+    // Clave secreta para firmar los tokens - debe tener al menos 512 bits para HS512
+    private static final String SECRET = "concesionaria-automax-jwt-secret-key-2024-sistema-seguro-muy-largo-para-cumplir-requisitos-de-seguridad-jwt-hs256-algoritmo";
     private static final int JWT_TOKEN_VALIDITY = 5 * 60 * 60; // 5 horas
 
     private Key getSigningKey() {
@@ -88,7 +88,7 @@ public class JwtTokenUtil {
                 .setSubject(subject)
                 .setIssuedAt(new Date(System.currentTimeMillis()))
                 .setExpiration(new Date(System.currentTimeMillis() + JWT_TOKEN_VALIDITY * 1000))
-                .signWith(getSigningKey(), SignatureAlgorithm.HS512)
+                .signWith(getSigningKey(), SignatureAlgorithm.HS256)
                 .compact();
     }
 

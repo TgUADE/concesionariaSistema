@@ -6,6 +6,7 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 /**
  * Entidad Usuario - Clase base para el sistema de usuarios
@@ -19,6 +20,7 @@ public class Usuario {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id_usuario")
     @JsonProperty("idUsuario")
     private Long idUsuario;
 
@@ -40,6 +42,12 @@ public class Usuario {
     @JsonProperty("mail")
     private String mail;
 
+    @NotBlank(message = "La contraseña es obligatoria")
+    @Size(min = 6, message = "La contraseña debe tener al menos 6 caracteres")
+    @Column(nullable = false, length = 255)
+    @JsonIgnore // No incluir en respuestas JSON por seguridad
+    private String password;
+
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     @JsonProperty("rol")
@@ -57,6 +65,14 @@ public class Usuario {
         this.nombre = nombre;
         this.apellido = apellido;
         this.mail = mail;
+        this.rol = rol;
+    }
+
+    public Usuario(String nombre, String apellido, String mail, String password, RolUsuario rol) {
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.mail = mail;
+        this.password = password;
         this.rol = rol;
     }
 
@@ -91,6 +107,14 @@ public class Usuario {
 
     public void setMail(String mail) {
         this.mail = mail;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public RolUsuario getRol() {

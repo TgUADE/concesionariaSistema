@@ -91,8 +91,8 @@ public class SecurityConfig {
      */
     @Bean
     public PasswordEncoder passwordEncoder() {
-        // Temporal para demo - En producción usar BCryptPasswordEncoder
-        return org.springframework.security.crypto.password.NoOpPasswordEncoder.getInstance();
+        // Usar BCryptPasswordEncoder para hashear contraseñas de forma segura
+        return new BCryptPasswordEncoder();
     }
 
     /**

@@ -149,3 +149,833 @@
 2025-06-04T19:57:16.464-03:00  INFO 29711 --- [sistemaConcesionaria] [  restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
 2025-06-04T19:57:16.466-03:00  INFO 29711 --- [sistemaConcesionaria] [  restartedMain] c.g.s.SistemaConcesionariaApplication    : Started SistemaConcesionariaApplication in 0.743 seconds (process running for 659.582)
 2025-06-04T19:57:16.467-03:00  INFO 29711 --- [sistemaConcesionaria] [  restartedMain] .ConditionEvaluationDeltaLoggingListener : Condition evaluation unchanged
+2025-06-04T21:21:42.457-03:00  WARN 29711 --- [sistemaConcesionaria] [l-2 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-2 - Thread starvation or clock leap detected (housekeeper delta=55s726ms).
+2025-06-04T21:34:11.867-03:00  WARN 29711 --- [sistemaConcesionaria] [l-2 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-2 - Thread starvation or clock leap detected (housekeeper delta=12m29s401ms).
+2025-06-05T00:31:41.674-03:00  WARN 29711 --- [sistemaConcesionaria] [l-2 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-2 - Thread starvation or clock leap detected (housekeeper delta=58s366ms).
+2025-06-05T00:48:59.212-03:00  WARN 29711 --- [sistemaConcesionaria] [l-2 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-2 - Thread starvation or clock leap detected (housekeeper delta=16m47s508ms).
+2025-06-05T01:05:08.688-03:00  WARN 29711 --- [sistemaConcesionaria] [l-2 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-2 - Thread starvation or clock leap detected (housekeeper delta=16m9s476ms).
+2025-06-05T01:25:36.602-03:00  WARN 29711 --- [sistemaConcesionaria] [l-2 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-2 - Thread starvation or clock leap detected (housekeeper delta=16m57s889ms).
+2025-06-05T01:43:17.351-03:00  WARN 29711 --- [sistemaConcesionaria] [l-2 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-2 - Thread starvation or clock leap detected (housekeeper delta=16m40s759ms).
+2025-06-05T02:00:17.669-03:00  WARN 29711 --- [sistemaConcesionaria] [l-2 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-2 - Thread starvation or clock leap detected (housekeeper delta=16m30s310ms).
+2025-06-05T02:16:59.163-03:00  WARN 29711 --- [sistemaConcesionaria] [l-2 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-2 - Thread starvation or clock leap detected (housekeeper delta=16m41s495ms).
+2025-06-05T02:27:02.891-03:00  WARN 29711 --- [sistemaConcesionaria] [l-2 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-2 - Thread starvation or clock leap detected (housekeeper delta=5m33s647ms).
+2025-06-05T02:43:48.833-03:00  WARN 29711 --- [sistemaConcesionaria] [l-2 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-2 - Thread starvation or clock leap detected (housekeeper delta=16m45s943ms).
+2025-06-05T03:00:54.152-03:00  WARN 29711 --- [sistemaConcesionaria] [l-2 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-2 - Thread starvation or clock leap detected (housekeeper delta=16m35s300ms).
+2025-06-05T03:17:33.479-03:00  WARN 29711 --- [sistemaConcesionaria] [l-2 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-2 - Thread starvation or clock leap detected (housekeeper delta=16m9s321ms).
+2025-06-06T04:54:54.119-03:00  WARN 29711 --- [sistemaConcesionaria] [l-2 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-2 - Thread starvation or clock leap detected (housekeeper delta=17m3s33ms).
+2025-06-06T11:02:47.142-03:00  WARN 29711 --- [sistemaConcesionaria] [l-2 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-2 - Thread starvation or clock leap detected (housekeeper delta=15m48s660ms).
+2025-06-06T11:18:52.258-03:00  WARN 29711 --- [sistemaConcesionaria] [l-2 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-2 - Thread starvation or clock leap detected (housekeeper delta=15m35s89ms).
+2025-06-06T11:36:00.968-03:00  WARN 29711 --- [sistemaConcesionaria] [l-2 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-2 - Thread starvation or clock leap detected (housekeeper delta=16m38s699ms).
+2025-06-06T15:05:23.920-03:00  WARN 29711 --- [sistemaConcesionaria] [l-2 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-2 - Thread starvation or clock leap detected (housekeeper delta=15m50s415ms).
+2025-06-06T15:14:54.521-03:00  WARN 29711 --- [sistemaConcesionaria] [l-2 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-2 - Thread starvation or clock leap detected (housekeeper delta=9m565ms).
+2025-06-06T23:30:29.436-03:00  WARN 29711 --- [sistemaConcesionaria] [l-2 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-2 - Retrograde clock change detected (housekeeper delta=29s868ms), soft-evicting connections from pool.
+2025-06-15T15:10:07.780-03:00  WARN 29711 --- [sistemaConcesionaria] [l-2 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-2 - Retrograde clock change detected (housekeeper delta=29s849ms), soft-evicting connections from pool.
+2025-06-16T12:59:09.273-03:00  INFO 29711 --- [sistemaConcesionaria] [nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-06-16T12:59:09.278-03:00  INFO 29711 --- [sistemaConcesionaria] [nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-06-16T12:59:09.339-03:00  INFO 29711 --- [sistemaConcesionaria] [nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 59 ms
+Usuario del sistema registrado: Admin (Mail: admin@sistema.com)
+2025-06-17T10:53:16.999-03:00  WARN 29711 --- [sistemaConcesionaria] [nio-8080-exec-6] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.http.converter.HttpMessageNotReadableException: JSON parse error: Cannot deserialize value of type `com.grupo9.sistemaConcesionaria.model.RolUsuario` from String "ADMIN": not one of the values accepted for Enum class: [CLIENTE, ADMINISTRADOR, VENDEDOR]]
+Usuario del sistema registrado: Admin2 (Mail: admin2@sistema.com)
+Usuario del sistema registrado: Admin3 (Mail: admin3@sistema.com)
+2025-06-17T11:00:23.061-03:00  WARN 29711 --- [sistemaConcesionaria] [nio-8080-exec-7] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.HttpRequestMethodNotSupportedException: Request method 'POST' is not supported]
+2025-06-17T11:02:48.877-03:00  INFO 29711 --- [sistemaConcesionaria] [   File Watcher] rtingClassPathChangeChangedEventListener : Restarting due to 1 class path change (0 additions, 0 deletions, 1 modification)
+2025-06-17T11:02:48.886-03:00  INFO 29711 --- [sistemaConcesionaria] [       Thread-7] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2025-06-17T11:02:48.892-03:00  INFO 29711 --- [sistemaConcesionaria] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2025-06-17T11:02:48.900-03:00  INFO 29711 --- [sistemaConcesionaria] [       Thread-7] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-06-17T11:02:48.948-03:00  WARN 29711 --- [sistemaConcesionaria] [       Thread-7] o.s.b.f.support.DisposableBeanAdapter    : Invocation of destroy method failed on bean with name 'inMemoryDatabaseShutdownExecutor': org.h2.jdbc.JdbcSQLNonTransientConnectionException: Database is already closed (to disable automatic closing at VM shutdown, add ";DB_CLOSE_ON_EXIT=FALSE" to the db URL) [90121-232]
+2025-06-17T11:02:48.949-03:00  INFO 29711 --- [sistemaConcesionaria] [       Thread-7] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Shutdown initiated...
+2025-06-17T11:02:48.951-03:00  INFO 29711 --- [sistemaConcesionaria] [       Thread-7] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Shutdown completed.
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+
+ :: Spring Boot ::                (v3.4.5)
+
+2025-06-17T11:02:49.150-03:00  INFO 29711 --- [sistemaConcesionaria] [  restartedMain] c.g.s.SistemaConcesionariaApplication    : Starting SistemaConcesionariaApplication using Java 23.0.1 with PID 29711 (/Users/tomi/Documents/concesionariaSistema/target/classes started by tomi in /Users/tomi/Documents/concesionariaSistema)
+2025-06-17T11:02:49.150-03:00  INFO 29711 --- [sistemaConcesionaria] [  restartedMain] c.g.s.SistemaConcesionariaApplication    : No active profile set, falling back to 1 default profile: "default"
+2025-06-17T11:02:49.363-03:00  INFO 29711 --- [sistemaConcesionaria] [  restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-06-17T11:02:49.371-03:00  INFO 29711 --- [sistemaConcesionaria] [  restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 7 ms. Found 0 JPA repository interfaces.
+2025-06-17T11:02:49.529-03:00  INFO 29711 --- [sistemaConcesionaria] [  restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2025-06-17T11:02:49.531-03:00  INFO 29711 --- [sistemaConcesionaria] [  restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-06-17T11:02:49.531-03:00  INFO 29711 --- [sistemaConcesionaria] [  restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.40]
+2025-06-17T11:02:49.644-03:00  INFO 29711 --- [sistemaConcesionaria] [  restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-06-17T11:02:49.644-03:00  INFO 29711 --- [sistemaConcesionaria] [  restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 493 ms
+2025-06-17T11:02:49.876-03:00  INFO 29711 --- [sistemaConcesionaria] [  restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-06-17T11:02:49.880-03:00  INFO 29711 --- [sistemaConcesionaria] [  restartedMain] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2025-06-17T11:02:49.911-03:00  INFO 29711 --- [sistemaConcesionaria] [  restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-06-17T11:02:49.911-03:00  INFO 29711 --- [sistemaConcesionaria] [  restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-3 - Starting...
+2025-06-17T11:02:49.913-03:00  INFO 29711 --- [sistemaConcesionaria] [  restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-3 - Added connection conn6075: url=jdbc:h2:mem:concesionariadb user=SA
+2025-06-17T11:02:49.913-03:00  INFO 29711 --- [sistemaConcesionaria] [  restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-3 - Start completed.
+2025-06-17T11:02:49.914-03:00  WARN 29711 --- [sistemaConcesionaria] [  restartedMain] org.hibernate.orm.deprecation            : HHH90000025: H2Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-06-17T11:02:49.915-03:00  INFO 29711 --- [sistemaConcesionaria] [  restartedMain] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-3)']
+	Database driver: undefined/unknown
+	Database version: 2.3.232
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+Hibernate: 
+    create global temporary table HT_usuarios(id_usuario bigint not null, primary key (id_usuario)) TRANSACTIONAL
+Hibernate: 
+    create global temporary table HTE_usuarios(requiere_facturaa boolean, ventas_totales integer default 0, HTE_IDENTITY bigint generated 
+by
+    default as identity, id_usuario bigint, codigo_postal_facturacion varchar(10), cuit_cuil varchar(15), documento varchar(20), telefono varchar(20), provincia_facturacion varchar(50), apellido varchar(100), area varchar(100), ciudad_facturacion varchar(100), nombre varchar(100), sucursal varchar(100), mail varchar(150), razon_social varchar(150), direccion varchar(200), direccion_facturacion varchar(200), rol enum ('ADMINISTRADOR', 'CLIENTE', 'VENDEDOR'), tipo_facturacion enum ('CONSUMIDOR_FINAL', 'EXENTO', 'EXTERIOR', 'MONOTRIBUTISTA', 'NO_RESPONSABLE', 'RESPONSABLE_INSCRIPTO', 'RESPONSABLE_NO_INSCRIPTO'), primary key (HTE_IDENTITY)) TRANSACTIONAL
+Hibernate: 
+    create global temporary table HTE_vendedores(ventas_totales integer default 0, HTE_IDENTITY bigint generated 
+by
+    default as identity, usuario_id bigint, telefono varchar(20), apellido varchar(100), nombre varchar(100), sucursal varchar(100), mail varchar(150), rol enum ('ADMINISTRADOR', 'CLIENTE', 'VENDEDOR'), primary key (HTE_IDENTITY)) TRANSACTIONAL
+Hibernate: 
+    create global temporary table HTE_administradores(HTE_IDENTITY bigint generated 
+by
+    default as identity, usuario_id bigint, telefono varchar(20), apellido varchar(100), area varchar(100), nombre varchar(100), mail varchar(150), rol enum ('ADMINISTRADOR', 'CLIENTE', 'VENDEDOR'), primary key (HTE_IDENTITY)) TRANSACTIONAL
+Hibernate: 
+    create global temporary table HTE_clientes(requiere_facturaa boolean, HTE_IDENTITY bigint generated 
+by
+    default as identity, usuario_id bigint, codigo_postal_facturacion varchar(10), cuit_cuil varchar(15), documento varchar(20), telefono varchar(20), provincia_facturacion varchar(50), apellido varchar(100), ciudad_facturacion varchar(100), nombre varchar(100), mail varchar(150), razon_social varchar(150), direccion varchar(200), direccion_facturacion varchar(200), rol enum ('ADMINISTRADOR', 'CLIENTE', 'VENDEDOR'), tipo_facturacion enum ('CONSUMIDOR_FINAL', 'EXENTO', 'EXTERIOR', 'MONOTRIBUTISTA', 'NO_RESPONSABLE', 'RESPONSABLE_INSCRIPTO', 'RESPONSABLE_NO_INSCRIPTO'), primary key (HTE_IDENTITY)) TRANSACTIONAL
+2025-06-17T11:02:50.143-03:00  INFO 29711 --- [sistemaConcesionaria] [  restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+Hibernate: 
+    create table accesorios (
+        id bigint generated by default as identity,
+        categoria enum ('AUDIO','DECORATIVO','DEPORTIVO','EXTERIOR','FUNCIONAL','ILUMINACION','INTERIOR','PROTECCION','SEGURIDAD','TRANSPORTE') not null,
+        color varchar(50),
+        compatibilidad varchar(200),
+        descripcion varchar(500),
+        disponible boolean not null,
+        marca varchar(50),
+        material varchar(100),
+        modelo varchar(50),
+        nombre varchar(100) not null,
+        precio float(53) not null,
+        requiere_instalacion boolean not null,
+        primary key (id)
+    )
+Hibernate: 
+    create table administradores (
+        area varchar(100),
+        usuario_id bigint not null,
+        primary key (usuario_id)
+    )
+Hibernate: 
+    create table clientes (
+        ciudad_facturacion varchar(100),
+        codigo_postal_facturacion varchar(10),
+        cuit_cuil varchar(15),
+        direccion varchar(200),
+        direccion_facturacion varchar(200),
+        documento varchar(20) not null,
+        provincia_facturacion varchar(50),
+        razon_social varchar(150),
+        requiere_facturaa boolean not null,
+        tipo_facturacion enum ('CONSUMIDOR_FINAL','EXENTO','EXTERIOR','MONOTRIBUTISTA','NO_RESPONSABLE','RESPONSABLE_INSCRIPTO','RESPONSABLE_NO_INSCRIPTO') not null,
+        usuario_id bigint not null,
+        primary key (usuario_id)
+    )
+Hibernate: 
+    create table configuracion_accesorio (
+        configuracion_id bigint not null,
+        accesorio_id bigint not null
+    )
+Hibernate: 
+    create table configuracion_equipamiento (
+        configuracion_id bigint not null,
+        equipamiento_id bigint not null
+    )
+Hibernate: 
+    create table configuracion_garantia (
+        configuracion_id bigint not null,
+        garantia_id bigint not null
+    )
+Hibernate: 
+    create table configuracion_vehiculo (
+        id bigint generated by default as identity,
+        activa boolean not null,
+        fecha_creacion timestamp(6) not null,
+        fecha_modificacion timestamp(6),
+        observaciones varchar(500),
+        precio_total float(53) not null,
+        vehiculo_numero_chasis varchar(255) not null,
+        primary key (id)
+    )
+Hibernate: 
+    create table datos_facturacion (
+        id bigint generated by default as identity,
+        actividad_principal varchar(100),
+        activo boolean not null,
+        ciudad_facturacion varchar(100) not null,
+        codigo_postal_facturacion varchar(10) not null,
+        condicion_iva enum ('CONSUMIDOR_FINAL','EXENTO','MONOTRIBUTO','NO_RESPONSABLE','RESPONSABLE_INSCRIPTO','RESPONSABLE_NO_INSCRIPTO','SUJETO_NO_CATEGORIZADO') not null,
+        cuit_cuil varchar(15) not null,
+        direccion_facturacion varchar(200) not null,
+        fecha_creacion timestamp(6) not null,
+        fecha_modificacion timestamp(6),
+        observaciones varchar(500),
+        provincia_facturacion varchar(50) not null,
+        razon_social varchar(150) not null,
+        tipo_facturacion enum ('CONSUMIDOR_FINAL','EXENTO','EXTERIOR','MONOTRIBUTISTA','NO_RESPONSABLE','RESPONSABLE_INSCRIPTO','RESPONSABLE_NO_INSCRIPTO') not null,
+        cliente_id bigint not null,
+        primary key (id)
+    )
+Hibernate: 
+    create table equipamiento_extra (
+        id bigint generated by default as identity,
+        categoria enum ('CLIMATIZACION','CONFORT','ENTRETENIMIENTO','ESTETICO','ILUMINACION','RENDIMIENTO','SEGURIDAD','TECNOLOGIA') not null,
+        descripcion varchar(500),
+        disponible boolean not null,
+        marca varchar(50),
+        modelo varchar(50),
+        nombre varchar(100) not null,
+        precio float(53) not null,
+        primary key (id)
+    )
+Hibernate: 
+    create table garantia_extendida (
+        id bigint generated by default as identity,
+        cobertura varchar(1000),
+        descripcion varchar(500),
+        disponible boolean not null,
+        duracion_meses integer not null check (duracion_meses>=1),
+        exclusiones varchar(1000),
+        limite_kilometros integer not null,
+        nombre varchar(100) not null,
+        precio float(53) not null,
+        proveedor varchar(100),
+        tipo_cobertura enum ('BASICA','CARROCERIA','COMPLETA','ELECTRICA','EXTENDIDA','MECANICA','PREMIUM','TODO_RIESGO') not null,
+        primary key (id)
+    )
+Hibernate: 
+    create table informacion_concesionaria (
+        id bigint generated by default as identity,
+        activo boolean not null,
+        ciudad varchar(100),
+        codigo_postal varchar(10),
+        cuit varchar(15) not null,
+        direccion varchar(200) not null,
+        email varchar(100),
+        fecha_creacion timestamp(6) not null,
+        fecha_modificacion timestamp(6),
+        nombre varchar(100) not null,
+        numero_habilitacion varchar(50),
+        provincia varchar(50),
+        sitio_web varchar(100),
+        telefono varchar(20),
+        primary key (id)
+    )
+Hibernate: 
+    create table pedido_configuraciones (
+        pedido_id bigint not null,
+        configuracion varchar(255)
+    )
+Hibernate: 
+    create table pedido_historial (
+        pedido_id bigint not null,
+        area_responsable varchar(100) not null,
+        estado enum ('CANCELADO','COBRANZAS','COMPLETADO','EMBARQUE','ENTREGA','IMPUESTOS','LOGISTICA','PENDIENTE','VENTAS') not null,
+        fecha timestamp(6) not null,
+        observaciones varchar(500)
+    )
+Hibernate: 
+    create table pedidos (
+        id_pedido bigint generated by default as identity,
+        area_responsable_actual varchar(100),
+        costo_total float(53) not null,
+        datos_facturacion varchar(1000),
+        estado_actual enum ('CANCELADO','COBRANZAS','COMPLETADO','EMBARQUE','ENTREGA','IMPUESTOS','LOGISTICA','PENDIENTE','VENTAS') not null,
+        fecha_creacion timestamp(6) not null,
+        forma_de_pago enum ('CONTADO','TARJETA','TRANSFERENCIA') not null,
+        impuestos_aplicados float(53) not null,
+        numero_de_pedido varchar(50) not null,
+        vendedor varchar(100),
+        cliente_id bigint not null,
+        vehiculo_id varchar(255) not null,
+        primary key (id_pedido)
+    )
+Hibernate: 
+    create table usuarios (
+        id_usuario bigint generated by default as identity,
+        apellido varchar(100) not null,
+        mail varchar(150) not null,
+        nombre varchar(100) not null,
+        rol enum ('ADMINISTRADOR','CLIENTE','VENDEDOR') not null,
+        telefono varchar(20),
+        primary key (id_usuario)
+    )
+Hibernate: 
+    create table vehiculos (
+        numero_chasis varchar(255) not null,
+        caracteristicas varchar(500),
+        color varchar(30),
+        disponible_venta boolean not null,
+        marca varchar(50) not null,
+        modelo varchar(50) not null,
+        numero_motor varchar(50),
+        precio_base float(53) not null,
+        tipo enum ('AUTO','CAMION','CAMIONETA','MOTO') not null,
+        primary key (numero_chasis)
+    )
+Hibernate: 
+    create table vendedores (
+        sucursal varchar(100),
+        ventas_totales integer default 0 check (ventas_totales>=0),
+        usuario_id bigint not null,
+        primary key (usuario_id)
+    )
+Hibernate: 
+    alter table if exists clientes 
+       drop constraint if exists UKbi5s7pr4111q074jrq16ven2m
+Hibernate: 
+    alter table if exists clientes 
+       add constraint UKbi5s7pr4111q074jrq16ven2m unique (cuit_cuil)
+Hibernate: 
+    alter table if exists clientes 
+       drop constraint if exists UK47fj0e5fbq2l3b80ij3rn1qss
+Hibernate: 
+    alter table if exists clientes 
+       add constraint UK47fj0e5fbq2l3b80ij3rn1qss unique (documento)
+Hibernate: 
+    alter table if exists configuracion_vehiculo 
+       drop constraint if exists UK6b6yomg8wek57kldj409kx0ix
+Hibernate: 
+    alter table if exists configuracion_vehiculo 
+       add constraint UK6b6yomg8wek57kldj409kx0ix unique (vehiculo_numero_chasis)
+Hibernate: 
+    alter table if exists datos_facturacion 
+       drop constraint if exists UK8tux1hxsygumjnew6mn37jwvv
+Hibernate: 
+    alter table if exists datos_facturacion 
+       add constraint UK8tux1hxsygumjnew6mn37jwvv unique (cuit_cuil)
+Hibernate: 
+    alter table if exists datos_facturacion 
+       drop constraint if exists UK74pjptxhf3qttlt3otpafjyvq
+Hibernate: 
+    alter table if exists datos_facturacion 
+       add constraint UK74pjptxhf3qttlt3otpafjyvq unique (cliente_id)
+Hibernate: 
+    alter table if exists informacion_concesionaria 
+       drop constraint if exists UK1kct6guq2x0c3mo8wpoa3evds
+Hibernate: 
+    alter table if exists informacion_concesionaria 
+       add constraint UK1kct6guq2x0c3mo8wpoa3evds unique (cuit)
+Hibernate: 
+    alter table if exists pedidos 
+       drop constraint if exists UKhauaubkgum3xat2fwaj6hk4wt
+Hibernate: 
+    alter table if exists pedidos 
+       add constraint UKhauaubkgum3xat2fwaj6hk4wt unique (numero_de_pedido)
+Hibernate: 
+    alter table if exists usuarios 
+       drop constraint if exists UKg1051tadnljkhk6oipnexgkg6
+Hibernate: 
+    alter table if exists usuarios 
+       add constraint UKg1051tadnljkhk6oipnexgkg6 unique (mail)
+Hibernate: 
+    alter table if exists administradores 
+       add constraint FK39dd1lon1to4ofwlcxf73gahm 
+       foreign key (usuario_id) 
+       references usuarios
+Hibernate: 
+    alter table if exists clientes 
+       add constraint FKk6iwsq3kts1bblivkjy6epajx 
+       foreign key (usuario_id) 
+       references usuarios
+Hibernate: 
+    alter table if exists configuracion_accesorio 
+       add constraint FKnicksddet24nbcwyqpsiajpaa 
+       foreign key (accesorio_id) 
+       references accesorios
+Hibernate: 
+    alter table if exists configuracion_accesorio 
+       add constraint FKbi3s873334lngkml6u1anpwu7 
+       foreign key (configuracion_id) 
+       references configuracion_vehiculo
+Hibernate: 
+    alter table if exists configuracion_equipamiento 
+       add constraint FK6tc6qg18uffu427lsjyc3upsu 
+       foreign key (equipamiento_id) 
+       references equipamiento_extra
+Hibernate: 
+    alter table if exists configuracion_equipamiento 
+       add constraint FKshl6ms35r5ypxsu9sgp41rskl 
+       foreign key (configuracion_id) 
+       references configuracion_vehiculo
+Hibernate: 
+    alter table if exists configuracion_garantia 
+       add constraint FKoskilp5cq6s2qbwc2fxqjofmj 
+       foreign key (garantia_id) 
+       references garantia_extendida
+Hibernate: 
+    alter table if exists configuracion_garantia 
+       add constraint FKdlpcxlo7uuehldkwpqrkdv7bt 
+       foreign key (configuracion_id) 
+       references configuracion_vehiculo
+Hibernate: 
+    alter table if exists configuracion_vehiculo 
+       add constraint FKqpv3mglwovljvufpf5wjlnwfn 
+       foreign key (vehiculo_numero_chasis) 
+       references vehiculos
+Hibernate: 
+    alter table if exists datos_facturacion 
+       add constraint FK4a2ylrwlavtr74ocfffmlrq9c 
+       foreign key (cliente_id) 
+       references clientes
+Hibernate: 
+    alter table if exists pedido_configuraciones 
+       add constraint FKi2l3th61yooy5rhpvqlecn0f7 
+       foreign key (pedido_id) 
+       references pedidos
+Hibernate: 
+    alter table if exists pedido_historial 
+       add constraint FKouqf8w8dcxhx7d8k49pe9yfhy 
+       foreign key (pedido_id) 
+       references pedidos
+Hibernate: 
+    alter table if exists pedidos 
+       add constraint FKg7202lk0hwxn04bmdl2thth5b 
+       foreign key (cliente_id) 
+       references clientes
+Hibernate: 
+    alter table if exists pedidos 
+       add constraint FK1gff9mm0cvjcu6tertmi2c8ti 
+       foreign key (vehiculo_id) 
+       references vehiculos
+Hibernate: 
+    alter table if exists vendedores 
+       add constraint FKtek1eni71uapxj1c5amyojdjg 
+       foreign key (usuario_id) 
+       references usuarios
+2025-06-17T11:02:50.181-03:00  INFO 29711 --- [sistemaConcesionaria] [  restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-06-17T11:02:50.205-03:00  INFO 29711 --- [sistemaConcesionaria] [  restartedMain] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with UserDetailsService bean with name jwtUserDetailsService
+2025-06-17T11:02:50.246-03:00  INFO 29711 --- [sistemaConcesionaria] [  restartedMain] c.g.s.service.VehiculoService            : Datos existentes cargados desde JSON: 1 vehículos
+2025-06-17T11:02:50.266-03:00  INFO 29711 --- [sistemaConcesionaria] [  restartedMain] c.g.s.service.ClienteService             : Datos existentes cargados desde JSON: 2 clientes
+2025-06-17T11:02:50.271-03:00  INFO 29711 --- [sistemaConcesionaria] [  restartedMain] c.g.s.service.ImpuestoService            : Estrategia de impuestos registrada para: CAMION
+2025-06-17T11:02:50.271-03:00  INFO 29711 --- [sistemaConcesionaria] [  restartedMain] c.g.s.service.ImpuestoService            : Estrategia de impuestos registrada para: CAMIONETA
+2025-06-17T11:02:50.271-03:00  INFO 29711 --- [sistemaConcesionaria] [  restartedMain] c.g.s.service.ImpuestoService            : Estrategia de impuestos registrada para: MOTO
+2025-06-17T11:02:50.271-03:00  INFO 29711 --- [sistemaConcesionaria] [  restartedMain] c.g.s.service.ImpuestoService            : Estrategia de impuestos registrada para: AUTO
+2025-06-17T11:02:50.273-03:00  INFO 29711 --- [sistemaConcesionaria] [  restartedMain] c.g.s.service.NotificacionService        : Observador registrado: EMAIL
+2025-06-17T11:02:50.273-03:00  INFO 29711 --- [sistemaConcesionaria] [  restartedMain] c.g.s.service.NotificacionService        : Observador registrado: SMS
+2025-06-17T11:02:50.274-03:00  INFO 29711 --- [sistemaConcesionaria] [  restartedMain] c.g.s.s.InformacionConcesionariaService  : Información de concesionaria inicializada: AutoMax Concesionaria
+2025-06-17T11:02:50.278-03:00  INFO 29711 --- [sistemaConcesionaria] [  restartedMain] c.g.s.service.EstadoPedidoManager        : Estados configurados: Embarque → Logística → Entrega
+2025-06-17T11:02:50.278-03:00  INFO 29711 --- [sistemaConcesionaria] [  restartedMain] c.g.s.service.EstadoPedidoManager        : Manager de estados inicializado correctamente
+2025-06-17T11:02:50.279-03:00  INFO 29711 --- [sistemaConcesionaria] [  restartedMain] c.g.s.service.PedidoService              : Cadena de responsabilidad configurada: Ventas → Cobranzas → Impuestos
+2025-06-17T11:02:50.284-03:00  INFO 29711 --- [sistemaConcesionaria] [  restartedMain] c.g.s.service.PedidoService              : Sistema de persistencia JSON inicializado - Pedidos existentes: 2
+2025-06-17T11:02:50.302-03:00  WARN 29711 --- [sistemaConcesionaria] [  restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-06-17T11:02:50.323-03:00  INFO 29711 --- [sistemaConcesionaria] [  restartedMain] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page: class path resource [static/index.html]
+2025-06-17T11:02:50.524-03:00  INFO 29711 --- [sistemaConcesionaria] [  restartedMain] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/h2-console'. Database available at 'jdbc:h2:mem:concesionariadb'
+2025-06-17T11:02:50.543-03:00  INFO 29711 --- [sistemaConcesionaria] [  restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2025-06-17T11:02:50.550-03:00  INFO 29711 --- [sistemaConcesionaria] [  restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2025-06-17T11:02:50.554-03:00  INFO 29711 --- [sistemaConcesionaria] [  restartedMain] c.g.s.SistemaConcesionariaApplication    : Started SistemaConcesionariaApplication in 1.44 seconds (process running for 1076828.969)
+2025-06-17T11:02:50.554-03:00  INFO 29711 --- [sistemaConcesionaria] [  restartedMain] .ConditionEvaluationDeltaLoggingListener : Condition evaluation unchanged
+2025-06-17T11:03:08.269-03:00  INFO 29711 --- [sistemaConcesionaria] [   File Watcher] rtingClassPathChangeChangedEventListener : Restarting due to 8 class path changes (0 additions, 0 deletions, 8 modifications)
+2025-06-17T11:03:08.284-03:00  INFO 29711 --- [sistemaConcesionaria] [      Thread-12] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2025-06-17T11:03:08.287-03:00  INFO 29711 --- [sistemaConcesionaria] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2025-06-17T11:03:08.289-03:00  INFO 29711 --- [sistemaConcesionaria] [      Thread-12] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-06-17T11:03:08.293-03:00  WARN 29711 --- [sistemaConcesionaria] [      Thread-12] o.s.b.f.support.DisposableBeanAdapter    : Invocation of destroy method failed on bean with name 'inMemoryDatabaseShutdownExecutor': org.h2.jdbc.JdbcSQLNonTransientConnectionException: Database is already closed (to disable automatic closing at VM shutdown, add ";DB_CLOSE_ON_EXIT=FALSE" to the db URL) [90121-232]
+2025-06-17T11:03:08.293-03:00  INFO 29711 --- [sistemaConcesionaria] [      Thread-12] com.zaxxer.hikari.HikariDataSource       : HikariPool-3 - Shutdown initiated...
+2025-06-17T11:03:08.294-03:00  INFO 29711 --- [sistemaConcesionaria] [      Thread-12] com.zaxxer.hikari.HikariDataSource       : HikariPool-3 - Shutdown completed.
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+
+ :: Spring Boot ::                (v3.4.5)
+
+2025-06-17T11:03:08.378-03:00  INFO 29711 --- [sistemaConcesionaria] [  restartedMain] c.g.s.SistemaConcesionariaApplication    : Starting SistemaConcesionariaApplication using Java 23.0.1 with PID 29711 (/Users/tomi/Documents/concesionariaSistema/target/classes started by tomi in /Users/tomi/Documents/concesionariaSistema)
+2025-06-17T11:03:08.378-03:00  INFO 29711 --- [sistemaConcesionaria] [  restartedMain] c.g.s.SistemaConcesionariaApplication    : No active profile set, falling back to 1 default profile: "default"
+2025-06-17T11:03:08.485-03:00  INFO 29711 --- [sistemaConcesionaria] [  restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-06-17T11:03:08.489-03:00  INFO 29711 --- [sistemaConcesionaria] [  restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 3 ms. Found 0 JPA repository interfaces.
+2025-06-17T11:03:08.570-03:00  INFO 29711 --- [sistemaConcesionaria] [  restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2025-06-17T11:03:08.570-03:00  INFO 29711 --- [sistemaConcesionaria] [  restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-06-17T11:03:08.570-03:00  INFO 29711 --- [sistemaConcesionaria] [  restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.40]
+2025-06-17T11:03:08.578-03:00  INFO 29711 --- [sistemaConcesionaria] [  restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-06-17T11:03:08.578-03:00  INFO 29711 --- [sistemaConcesionaria] [  restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 200 ms
+2025-06-17T11:03:08.631-03:00  INFO 29711 --- [sistemaConcesionaria] [  restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-06-17T11:03:08.634-03:00  INFO 29711 --- [sistemaConcesionaria] [  restartedMain] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2025-06-17T11:03:08.639-03:00  INFO 29711 --- [sistemaConcesionaria] [  restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-06-17T11:03:08.639-03:00  INFO 29711 --- [sistemaConcesionaria] [  restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-4 - Starting...
+2025-06-17T11:03:08.640-03:00  INFO 29711 --- [sistemaConcesionaria] [  restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-4 - Added connection conn6085: url=jdbc:h2:mem:concesionariadb user=SA
+2025-06-17T11:03:08.641-03:00  INFO 29711 --- [sistemaConcesionaria] [  restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-4 - Start completed.
+2025-06-17T11:03:08.641-03:00  WARN 29711 --- [sistemaConcesionaria] [  restartedMain] org.hibernate.orm.deprecation            : HHH90000025: H2Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-06-17T11:03:08.641-03:00  INFO 29711 --- [sistemaConcesionaria] [  restartedMain] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-4)']
+	Database driver: undefined/unknown
+	Database version: 2.3.232
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+Hibernate: 
+    create global temporary table HT_usuarios(id_usuario bigint not null, primary key (id_usuario)) TRANSACTIONAL
+Hibernate: 
+    create global temporary table HTE_usuarios(requiere_facturaa boolean, ventas_totales integer default 0, HTE_IDENTITY bigint generated 
+by
+    default as identity, id_usuario bigint, codigo_postal_facturacion varchar(10), cuit_cuil varchar(15), documento varchar(20), telefono varchar(20), provincia_facturacion varchar(50), apellido varchar(100), area varchar(100), ciudad_facturacion varchar(100), nombre varchar(100), sucursal varchar(100), mail varchar(150), razon_social varchar(150), direccion varchar(200), direccion_facturacion varchar(200), rol enum ('ADMINISTRADOR', 'CLIENTE', 'VENDEDOR'), tipo_facturacion enum ('CONSUMIDOR_FINAL', 'EXENTO', 'EXTERIOR', 'MONOTRIBUTISTA', 'NO_RESPONSABLE', 'RESPONSABLE_INSCRIPTO', 'RESPONSABLE_NO_INSCRIPTO'), primary key (HTE_IDENTITY)) TRANSACTIONAL
+Hibernate: 
+    create global temporary table HTE_vendedores(ventas_totales integer default 0, HTE_IDENTITY bigint generated 
+by
+    default as identity, usuario_id bigint, telefono varchar(20), apellido varchar(100), nombre varchar(100), sucursal varchar(100), mail varchar(150), rol enum ('ADMINISTRADOR', 'CLIENTE', 'VENDEDOR'), primary key (HTE_IDENTITY)) TRANSACTIONAL
+Hibernate: 
+    create global temporary table HTE_administradores(HTE_IDENTITY bigint generated 
+by
+    default as identity, usuario_id bigint, telefono varchar(20), apellido varchar(100), area varchar(100), nombre varchar(100), mail varchar(150), rol enum ('ADMINISTRADOR', 'CLIENTE', 'VENDEDOR'), primary key (HTE_IDENTITY)) TRANSACTIONAL
+Hibernate: 
+    create global temporary table HTE_clientes(requiere_facturaa boolean, HTE_IDENTITY bigint generated 
+by
+    default as identity, usuario_id bigint, codigo_postal_facturacion varchar(10), cuit_cuil varchar(15), documento varchar(20), telefono varchar(20), provincia_facturacion varchar(50), apellido varchar(100), ciudad_facturacion varchar(100), nombre varchar(100), mail varchar(150), razon_social varchar(150), direccion varchar(200), direccion_facturacion varchar(200), rol enum ('ADMINISTRADOR', 'CLIENTE', 'VENDEDOR'), tipo_facturacion enum ('CONSUMIDOR_FINAL', 'EXENTO', 'EXTERIOR', 'MONOTRIBUTISTA', 'NO_RESPONSABLE', 'RESPONSABLE_INSCRIPTO', 'RESPONSABLE_NO_INSCRIPTO'), primary key (HTE_IDENTITY)) TRANSACTIONAL
+2025-06-17T11:03:08.786-03:00  INFO 29711 --- [sistemaConcesionaria] [  restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+Hibernate: 
+    create table accesorios (
+        id bigint generated by default as identity,
+        categoria enum ('AUDIO','DECORATIVO','DEPORTIVO','EXTERIOR','FUNCIONAL','ILUMINACION','INTERIOR','PROTECCION','SEGURIDAD','TRANSPORTE') not null,
+        color varchar(50),
+        compatibilidad varchar(200),
+        descripcion varchar(500),
+        disponible boolean not null,
+        marca varchar(50),
+        material varchar(100),
+        modelo varchar(50),
+        nombre varchar(100) not null,
+        precio float(53) not null,
+        requiere_instalacion boolean not null,
+        primary key (id)
+    )
+Hibernate: 
+    create table administradores (
+        area varchar(100),
+        usuario_id bigint not null,
+        primary key (usuario_id)
+    )
+Hibernate: 
+    create table clientes (
+        ciudad_facturacion varchar(100),
+        codigo_postal_facturacion varchar(10),
+        cuit_cuil varchar(15),
+        direccion varchar(200),
+        direccion_facturacion varchar(200),
+        documento varchar(20) not null,
+        provincia_facturacion varchar(50),
+        razon_social varchar(150),
+        requiere_facturaa boolean not null,
+        tipo_facturacion enum ('CONSUMIDOR_FINAL','EXENTO','EXTERIOR','MONOTRIBUTISTA','NO_RESPONSABLE','RESPONSABLE_INSCRIPTO','RESPONSABLE_NO_INSCRIPTO') not null,
+        usuario_id bigint not null,
+        primary key (usuario_id)
+    )
+Hibernate: 
+    create table configuracion_accesorio (
+        configuracion_id bigint not null,
+        accesorio_id bigint not null
+    )
+Hibernate: 
+    create table configuracion_equipamiento (
+        configuracion_id bigint not null,
+        equipamiento_id bigint not null
+    )
+Hibernate: 
+    create table configuracion_garantia (
+        configuracion_id bigint not null,
+        garantia_id bigint not null
+    )
+Hibernate: 
+    create table configuracion_vehiculo (
+        id bigint generated by default as identity,
+        activa boolean not null,
+        fecha_creacion timestamp(6) not null,
+        fecha_modificacion timestamp(6),
+        observaciones varchar(500),
+        precio_total float(53) not null,
+        vehiculo_numero_chasis varchar(255) not null,
+        primary key (id)
+    )
+Hibernate: 
+    create table datos_facturacion (
+        id bigint generated by default as identity,
+        actividad_principal varchar(100),
+        activo boolean not null,
+        ciudad_facturacion varchar(100) not null,
+        codigo_postal_facturacion varchar(10) not null,
+        condicion_iva enum ('CONSUMIDOR_FINAL','EXENTO','MONOTRIBUTO','NO_RESPONSABLE','RESPONSABLE_INSCRIPTO','RESPONSABLE_NO_INSCRIPTO','SUJETO_NO_CATEGORIZADO') not null,
+        cuit_cuil varchar(15) not null,
+        direccion_facturacion varchar(200) not null,
+        fecha_creacion timestamp(6) not null,
+        fecha_modificacion timestamp(6),
+        observaciones varchar(500),
+        provincia_facturacion varchar(50) not null,
+        razon_social varchar(150) not null,
+        tipo_facturacion enum ('CONSUMIDOR_FINAL','EXENTO','EXTERIOR','MONOTRIBUTISTA','NO_RESPONSABLE','RESPONSABLE_INSCRIPTO','RESPONSABLE_NO_INSCRIPTO') not null,
+        cliente_id bigint not null,
+        primary key (id)
+    )
+Hibernate: 
+    create table equipamiento_extra (
+        id bigint generated by default as identity,
+        categoria enum ('CLIMATIZACION','CONFORT','ENTRETENIMIENTO','ESTETICO','ILUMINACION','RENDIMIENTO','SEGURIDAD','TECNOLOGIA') not null,
+        descripcion varchar(500),
+        disponible boolean not null,
+        marca varchar(50),
+        modelo varchar(50),
+        nombre varchar(100) not null,
+        precio float(53) not null,
+        primary key (id)
+    )
+Hibernate: 
+    create table garantia_extendida (
+        id bigint generated by default as identity,
+        cobertura varchar(1000),
+        descripcion varchar(500),
+        disponible boolean not null,
+        duracion_meses integer not null check (duracion_meses>=1),
+        exclusiones varchar(1000),
+        limite_kilometros integer not null,
+        nombre varchar(100) not null,
+        precio float(53) not null,
+        proveedor varchar(100),
+        tipo_cobertura enum ('BASICA','CARROCERIA','COMPLETA','ELECTRICA','EXTENDIDA','MECANICA','PREMIUM','TODO_RIESGO') not null,
+        primary key (id)
+    )
+Hibernate: 
+    create table informacion_concesionaria (
+        id bigint generated by default as identity,
+        activo boolean not null,
+        ciudad varchar(100),
+        codigo_postal varchar(10),
+        cuit varchar(15) not null,
+        direccion varchar(200) not null,
+        email varchar(100),
+        fecha_creacion timestamp(6) not null,
+        fecha_modificacion timestamp(6),
+        nombre varchar(100) not null,
+        numero_habilitacion varchar(50),
+        provincia varchar(50),
+        sitio_web varchar(100),
+        telefono varchar(20),
+        primary key (id)
+    )
+Hibernate: 
+    create table pedido_configuraciones (
+        pedido_id bigint not null,
+        configuracion varchar(255)
+    )
+Hibernate: 
+    create table pedido_historial (
+        pedido_id bigint not null,
+        area_responsable varchar(100) not null,
+        estado enum ('CANCELADO','COBRANZAS','COMPLETADO','EMBARQUE','ENTREGA','IMPUESTOS','LOGISTICA','PENDIENTE','VENTAS') not null,
+        fecha timestamp(6) not null,
+        observaciones varchar(500)
+    )
+Hibernate: 
+    create table pedidos (
+        id_pedido bigint generated by default as identity,
+        area_responsable_actual varchar(100),
+        costo_total float(53) not null,
+        datos_facturacion varchar(1000),
+        estado_actual enum ('CANCELADO','COBRANZAS','COMPLETADO','EMBARQUE','ENTREGA','IMPUESTOS','LOGISTICA','PENDIENTE','VENTAS') not null,
+        fecha_creacion timestamp(6) not null,
+        forma_de_pago enum ('CONTADO','TARJETA','TRANSFERENCIA') not null,
+        impuestos_aplicados float(53) not null,
+        numero_de_pedido varchar(50) not null,
+        vendedor varchar(100),
+        cliente_id bigint not null,
+        vehiculo_id varchar(255) not null,
+        primary key (id_pedido)
+    )
+Hibernate: 
+    create table usuarios (
+        id_usuario bigint generated by default as identity,
+        apellido varchar(100) not null,
+        mail varchar(150) not null,
+        nombre varchar(100) not null,
+        rol enum ('ADMINISTRADOR','CLIENTE','VENDEDOR') not null,
+        telefono varchar(20),
+        primary key (id_usuario)
+    )
+Hibernate: 
+    create table vehiculos (
+        numero_chasis varchar(255) not null,
+        caracteristicas varchar(500),
+        color varchar(30),
+        disponible_venta boolean not null,
+        marca varchar(50) not null,
+        modelo varchar(50) not null,
+        numero_motor varchar(50),
+        precio_base float(53) not null,
+        tipo enum ('AUTO','CAMION','CAMIONETA','MOTO') not null,
+        primary key (numero_chasis)
+    )
+Hibernate: 
+    create table vendedores (
+        sucursal varchar(100),
+        ventas_totales integer default 0 check (ventas_totales>=0),
+        usuario_id bigint not null,
+        primary key (usuario_id)
+    )
+Hibernate: 
+    alter table if exists clientes 
+       drop constraint if exists UKbi5s7pr4111q074jrq16ven2m
+Hibernate: 
+    alter table if exists clientes 
+       add constraint UKbi5s7pr4111q074jrq16ven2m unique (cuit_cuil)
+Hibernate: 
+    alter table if exists clientes 
+       drop constraint if exists UK47fj0e5fbq2l3b80ij3rn1qss
+Hibernate: 
+    alter table if exists clientes 
+       add constraint UK47fj0e5fbq2l3b80ij3rn1qss unique (documento)
+Hibernate: 
+    alter table if exists configuracion_vehiculo 
+       drop constraint if exists UK6b6yomg8wek57kldj409kx0ix
+Hibernate: 
+    alter table if exists configuracion_vehiculo 
+       add constraint UK6b6yomg8wek57kldj409kx0ix unique (vehiculo_numero_chasis)
+Hibernate: 
+    alter table if exists datos_facturacion 
+       drop constraint if exists UK8tux1hxsygumjnew6mn37jwvv
+Hibernate: 
+    alter table if exists datos_facturacion 
+       add constraint UK8tux1hxsygumjnew6mn37jwvv unique (cuit_cuil)
+Hibernate: 
+    alter table if exists datos_facturacion 
+       drop constraint if exists UK74pjptxhf3qttlt3otpafjyvq
+Hibernate: 
+    alter table if exists datos_facturacion 
+       add constraint UK74pjptxhf3qttlt3otpafjyvq unique (cliente_id)
+Hibernate: 
+    alter table if exists informacion_concesionaria 
+       drop constraint if exists UK1kct6guq2x0c3mo8wpoa3evds
+Hibernate: 
+    alter table if exists informacion_concesionaria 
+       add constraint UK1kct6guq2x0c3mo8wpoa3evds unique (cuit)
+Hibernate: 
+    alter table if exists pedidos 
+       drop constraint if exists UKhauaubkgum3xat2fwaj6hk4wt
+Hibernate: 
+    alter table if exists pedidos 
+       add constraint UKhauaubkgum3xat2fwaj6hk4wt unique (numero_de_pedido)
+Hibernate: 
+    alter table if exists usuarios 
+       drop constraint if exists UKg1051tadnljkhk6oipnexgkg6
+Hibernate: 
+    alter table if exists usuarios 
+       add constraint UKg1051tadnljkhk6oipnexgkg6 unique (mail)
+Hibernate: 
+    alter table if exists administradores 
+       add constraint FK39dd1lon1to4ofwlcxf73gahm 
+       foreign key (usuario_id) 
+       references usuarios
+Hibernate: 
+    alter table if exists clientes 
+       add constraint FKk6iwsq3kts1bblivkjy6epajx 
+       foreign key (usuario_id) 
+       references usuarios
+Hibernate: 
+    alter table if exists configuracion_accesorio 
+       add constraint FKnicksddet24nbcwyqpsiajpaa 
+       foreign key (accesorio_id) 
+       references accesorios
+Hibernate: 
+    alter table if exists configuracion_accesorio 
+       add constraint FKbi3s873334lngkml6u1anpwu7 
+       foreign key (configuracion_id) 
+       references configuracion_vehiculo
+Hibernate: 
+    alter table if exists configuracion_equipamiento 
+       add constraint FK6tc6qg18uffu427lsjyc3upsu 
+       foreign key (equipamiento_id) 
+       references equipamiento_extra
+Hibernate: 
+    alter table if exists configuracion_equipamiento 
+       add constraint FKshl6ms35r5ypxsu9sgp41rskl 
+       foreign key (configuracion_id) 
+       references configuracion_vehiculo
+Hibernate: 
+    alter table if exists configuracion_garantia 
+       add constraint FKoskilp5cq6s2qbwc2fxqjofmj 
+       foreign key (garantia_id) 
+       references garantia_extendida
+Hibernate: 
+    alter table if exists configuracion_garantia 
+       add constraint FKdlpcxlo7uuehldkwpqrkdv7bt 
+       foreign key (configuracion_id) 
+       references configuracion_vehiculo
+Hibernate: 
+    alter table if exists configuracion_vehiculo 
+       add constraint FKqpv3mglwovljvufpf5wjlnwfn 
+       foreign key (vehiculo_numero_chasis) 
+       references vehiculos
+Hibernate: 
+    alter table if exists datos_facturacion 
+       add constraint FK4a2ylrwlavtr74ocfffmlrq9c 
+       foreign key (cliente_id) 
+       references clientes
+Hibernate: 
+    alter table if exists pedido_configuraciones 
+       add constraint FKi2l3th61yooy5rhpvqlecn0f7 
+       foreign key (pedido_id) 
+       references pedidos
+Hibernate: 
+    alter table if exists pedido_historial 
+       add constraint FKouqf8w8dcxhx7d8k49pe9yfhy 
+       foreign key (pedido_id) 
+       references pedidos
+Hibernate: 
+    alter table if exists pedidos 
+       add constraint FKg7202lk0hwxn04bmdl2thth5b 
+       foreign key (cliente_id) 
+       references clientes
+Hibernate: 
+    alter table if exists pedidos 
+       add constraint FK1gff9mm0cvjcu6tertmi2c8ti 
+       foreign key (vehiculo_id) 
+       references vehiculos
+Hibernate: 
+    alter table if exists vendedores 
+       add constraint FKtek1eni71uapxj1c5amyojdjg 
+       foreign key (usuario_id) 
+       references usuarios
+2025-06-17T11:03:08.797-03:00  INFO 29711 --- [sistemaConcesionaria] [  restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-06-17T11:03:08.816-03:00  INFO 29711 --- [sistemaConcesionaria] [  restartedMain] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with UserDetailsService bean with name jwtUserDetailsService
+2025-06-17T11:03:08.829-03:00  INFO 29711 --- [sistemaConcesionaria] [  restartedMain] c.g.s.service.VehiculoService            : Datos existentes cargados desde JSON: 1 vehículos
+2025-06-17T11:03:08.836-03:00  INFO 29711 --- [sistemaConcesionaria] [  restartedMain] c.g.s.service.ClienteService             : Datos existentes cargados desde JSON: 2 clientes
+2025-06-17T11:03:08.838-03:00  INFO 29711 --- [sistemaConcesionaria] [  restartedMain] c.g.s.service.ImpuestoService            : Estrategia de impuestos registrada para: CAMION
+2025-06-17T11:03:08.838-03:00  INFO 29711 --- [sistemaConcesionaria] [  restartedMain] c.g.s.service.ImpuestoService            : Estrategia de impuestos registrada para: CAMIONETA
+2025-06-17T11:03:08.838-03:00  INFO 29711 --- [sistemaConcesionaria] [  restartedMain] c.g.s.service.ImpuestoService            : Estrategia de impuestos registrada para: MOTO
+2025-06-17T11:03:08.838-03:00  INFO 29711 --- [sistemaConcesionaria] [  restartedMain] c.g.s.service.ImpuestoService            : Estrategia de impuestos registrada para: AUTO
+2025-06-17T11:03:08.839-03:00  INFO 29711 --- [sistemaConcesionaria] [  restartedMain] c.g.s.service.NotificacionService        : Observador registrado: EMAIL
+2025-06-17T11:03:08.839-03:00  INFO 29711 --- [sistemaConcesionaria] [  restartedMain] c.g.s.service.NotificacionService        : Observador registrado: SMS
+2025-06-17T11:03:08.840-03:00  INFO 29711 --- [sistemaConcesionaria] [  restartedMain] c.g.s.s.InformacionConcesionariaService  : Información de concesionaria inicializada: AutoMax Concesionaria
+2025-06-17T11:03:08.844-03:00  INFO 29711 --- [sistemaConcesionaria] [  restartedMain] c.g.s.service.EstadoPedidoManager        : Estados configurados: Embarque → Logística → Entrega
+2025-06-17T11:03:08.844-03:00  INFO 29711 --- [sistemaConcesionaria] [  restartedMain] c.g.s.service.EstadoPedidoManager        : Manager de estados inicializado correctamente
+2025-06-17T11:03:08.844-03:00  INFO 29711 --- [sistemaConcesionaria] [  restartedMain] c.g.s.service.PedidoService              : Cadena de responsabilidad configurada: Ventas → Cobranzas → Impuestos
+2025-06-17T11:03:08.851-03:00  INFO 29711 --- [sistemaConcesionaria] [  restartedMain] c.g.s.service.PedidoService              : Sistema de persistencia JSON inicializado - Pedidos existentes: 2
+2025-06-17T11:03:08.866-03:00  WARN 29711 --- [sistemaConcesionaria] [  restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-06-17T11:03:08.887-03:00  INFO 29711 --- [sistemaConcesionaria] [  restartedMain] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page: class path resource [static/index.html]
+2025-06-17T11:03:09.077-03:00  INFO 29711 --- [sistemaConcesionaria] [  restartedMain] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/h2-console'. Database available at 'jdbc:h2:mem:concesionariadb'
+2025-06-17T11:03:09.095-03:00  INFO 29711 --- [sistemaConcesionaria] [  restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2025-06-17T11:03:09.101-03:00  INFO 29711 --- [sistemaConcesionaria] [  restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2025-06-17T11:03:09.103-03:00  INFO 29711 --- [sistemaConcesionaria] [  restartedMain] c.g.s.SistemaConcesionariaApplication    : Started SistemaConcesionariaApplication in 0.741 seconds (process running for 1076847.519)
+2025-06-17T11:03:09.103-03:00  INFO 29711 --- [sistemaConcesionaria] [  restartedMain] .ConditionEvaluationDeltaLoggingListener : Condition evaluation unchanged
+2025-06-17T11:09:54.226-03:00  INFO 29711 --- [sistemaConcesionaria] [ionShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2025-06-17T11:09:54.347-03:00  INFO 29711 --- [sistemaConcesionaria] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2025-06-17T11:09:54.360-03:00  INFO 29711 --- [sistemaConcesionaria] [ionShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-06-17T11:09:54.367-03:00  WARN 29711 --- [sistemaConcesionaria] [ionShutdownHook] o.s.b.f.support.DisposableBeanAdapter    : Invocation of destroy method failed on bean with name 'inMemoryDatabaseShutdownExecutor': org.h2.jdbc.JdbcSQLNonTransientConnectionException: Database is already closed (to disable automatic closing at VM shutdown, add ";DB_CLOSE_ON_EXIT=FALSE" to the db URL) [90121-232]
+2025-06-17T11:09:54.368-03:00  INFO 29711 --- [sistemaConcesionaria] [ionShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-4 - Shutdown initiated...
+2025-06-17T11:09:54.382-03:00  INFO 29711 --- [sistemaConcesionaria] [ionShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-4 - Shutdown completed.
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD FAILURE
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  12 d 15:23 h
+[INFO] Finished at: 2025-06-17T11:09:54-03:00
+[INFO] ------------------------------------------------------------------------
+[ERROR] Failed to execute goal org.springframework.boot:spring-boot-maven-plugin:3.4.5:run (default-cli) on project sistemaConcesionaria: Process terminated with exit code: 143 -> [Help 1]
+[ERROR] 
+[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
+[ERROR] Re-run Maven using the -X switch to enable full debug logging.
+[ERROR] 
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MojoExecutionException

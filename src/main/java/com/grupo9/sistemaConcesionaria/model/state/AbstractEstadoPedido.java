@@ -20,11 +20,6 @@ public abstract class AbstractEstadoPedido implements EstadoPedidoState {
     protected String descripcionEstado;
     protected EstadoPedidoState siguienteEstado;
 
-    /**
-     * Constructor base
-     * @param nombreEstado Nombre del estado
-     * @param descripcionEstado Descripción del estado
-     */
     public AbstractEstadoPedido(String nombreEstado, String descripcionEstado) {
         this.nombreEstado = nombreEstado;
         this.descripcionEstado = descripcionEstado;
@@ -53,8 +48,7 @@ public abstract class AbstractEstadoPedido implements EstadoPedidoState {
             if (puedeAvanzar(pedido) && siguienteEstado != null) {
                 logger.info("Pedido {} puede avanzar al siguiente estado: {}", 
                            pedido.getIdPedido(), siguienteEstado.getNombreEstado());
-                // Nota: El avance real al siguiente estado debe ser manejado externamente
-                // por el contexto o servicio que maneja la máquina de estados
+
             }
 
             logger.info("Procesamiento completado en estado: {} para pedido: {}", 
@@ -67,18 +61,8 @@ public abstract class AbstractEstadoPedido implements EstadoPedidoState {
         }
     }
 
-    /**
-     * Procesamiento específico del estado - debe ser implementado por cada estado concreto
-     * @param pedido El pedido a procesar
-     * @throws Exception si hay errores específicos del estado
-     */
     protected abstract void procesarEstadoEspecifico(Pedido pedido) throws Exception;
 
-    /**
-     * Validaciones previas que debe cumplir el pedido antes del procesamiento
-     * @param pedido El pedido a validar
-     * @throws IllegalArgumentException si no cumple las precondiciones
-     */
     protected void validarPrecondiciones(Pedido pedido) {
         if (pedido.getCliente() == null) {
             throw new IllegalArgumentException("El pedido debe tener un cliente asignado");
@@ -88,10 +72,7 @@ public abstract class AbstractEstadoPedido implements EstadoPedidoState {
         }
     }
 
-    /**
-     * Actualiza el estado del pedido usando el método cambiarEstado existente
-     * @param pedido El pedido a actualizar
-     */
+
     protected void actualizarEstadoPedido(Pedido pedido) {
         EstadoPedido estadoEnum = mapearAEstadoEnum();
         
@@ -102,16 +83,10 @@ public abstract class AbstractEstadoPedido implements EstadoPedidoState {
                     pedido.getIdPedido(), estadoEnum.getDescripcion());
     }
 
-    /**
-     * Mapea el estado actual a su enum correspondiente
-     * @return El enum del estado
-     */
+
     protected abstract EstadoPedido mapearAEstadoEnum();
 
-    /**
-     * Establece el siguiente estado en la secuencia
-     * @param siguienteEstado El siguiente estado
-     */
+
     public void setSiguienteEstado(EstadoPedidoState siguienteEstado) {
         this.siguienteEstado = siguienteEstado;
     }
@@ -138,26 +113,15 @@ public abstract class AbstractEstadoPedido implements EstadoPedidoState {
 
     @Override
     public boolean puedeAvanzar(Pedido pedido) {
-        // Por defecto, siempre puede avanzar si no hay errores
-        // Los estados específicos pueden sobrescribir esta lógica
         return true;
     }
 
-    /**
-     * Método utilitario para agregar configuraciones adicionales al pedido
-     * @param pedido El pedido
-     * @param configuracion La configuración a agregar
-     */
     protected void agregarConfiguracion(Pedido pedido, String configuracion) {
         pedido.agregarConfiguracion(configuracion);
         logger.debug("Configuración agregada al pedido {}: {}", 
                     pedido.getIdPedido(), configuracion);
     }
 
-    /**
-     * Simula un retraso en el procesamiento (para testing/demo)
-     * @param millis Milisegundos de retraso
-     */
     protected void simularProcesamiento(int millis) {
         try {
             Thread.sleep(millis);

@@ -1,7 +1,7 @@
 package com.grupo9.sistemaConcesionaria.model;
 
 /**
- * Enum para categorizar los accesorios
+ * Categorizar los accesorios
  */
 public enum CategoriaAccesorio {
     EXTERIOR("Exterior"),

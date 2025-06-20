@@ -5,10 +5,6 @@ package com.grupo9.sistemaConcesionaria.exception;
  */
 public class DuplicateVehiculoException extends ConcesionariaException {
 
-    /**
-     * Constructs a new DuplicateVehiculoException with the specified detail message.
-     * @param message the detail message.
-     */
     public DuplicateVehiculoException(String message) {
         super(message);
     }

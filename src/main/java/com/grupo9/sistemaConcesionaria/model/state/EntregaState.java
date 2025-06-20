@@ -262,8 +262,6 @@ public class EntregaState extends AbstractEstadoPedido {
 
     @Override
     public boolean puedeAvanzar(Pedido pedido) {
-        // El estado de entrega es final, después va a COMPLETADO
-        // Verificar que se tenga información básica del cliente
         return pedido.getCliente() != null && 
                pedido.getCliente().getDocumento() != null &&
                !pedido.getCliente().getDocumento().isEmpty();

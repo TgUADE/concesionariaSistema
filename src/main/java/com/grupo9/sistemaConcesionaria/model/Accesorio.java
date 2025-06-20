@@ -8,7 +8,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 /**
- * Entidad Accesorio - Sistema de Concesionaria
+ * Entidad Accesorio
  * Representa accesorios adicionales para los vehículos
  */
 @Entity
